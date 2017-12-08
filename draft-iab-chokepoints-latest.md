@@ -73,9 +73,6 @@ Ensuring that choke points don’t form is preferable to enshrining them, since 
 
 Therefore, when there is risk of a choke point forming, we look for other mitigations before considering constraints on the behaviour of infrastructure providers. This might take place through encouraging more diversity at the potential choke point, technical measures that counteract its formation, or other means.
 
-Going back to the example of CDNs and DDoS mitigation, the IETF is working to create protocols to help networks to communicate about DDoS attacks in the DOTS Working Group, and there is emerging work to help networks prevent their clients from contributing to DDoS attacks.
-
-Outside the IETF, organisations like FIRST assure that responses are coordinated. These approaches aim to find a cooperative and voluntary solution to the problem without necessitating a new choke point.
 
 # Avoid Choke Points
 
