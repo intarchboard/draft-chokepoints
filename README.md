@@ -1,6 +1,6 @@
-# 
+# Internet Choke Points
 
-This is the working area for the individual Internet-Draft, "".
+This is the working area for the individual Internet-Draft, "Internet Choke Points".
 
 * [Editor's Copy](https://intarchboard.github.io/chokepoints/#go.draft-iab-chokepoints-latest.html)
 * [Individual Draft](https://tools.ietf.org/html/draft-iab-chokepoints-latest)
