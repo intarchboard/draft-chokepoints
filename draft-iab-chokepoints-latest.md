@@ -1,6 +1,5 @@
 ---
-title: 
-abbrev: 
+title: Internet Choke Points
 docname: draft-iab-chokepoints-latest
 date: 2017
 category: info
@@ -17,13 +16,13 @@ author:
  -
     ins: M. Nottingham
     name: Mark Nottingham
-    organization: 
+    organization:
     email: mnot@mnot.net
     uri: https://www.mnot.net/
  -
     ins: B. Trammell
     name: Brian Trammell
-    organization: 
+    organization:
     email: ietf@trammell.ch
 
 
