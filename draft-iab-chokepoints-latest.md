@@ -63,7 +63,7 @@ Together, these architectural principles and corresponding practices assure that
 In some cases, external factors encourage the formation of a new choke point despite the efforts
 outlined above. For example, near-monopolies on “last-mile” Internet access in some jurisdictions have led to concerns about [network neutrality](http://www.internetsociety.org/net-neutrality), since they act as a choke point.
 
-Content Delivery Networks (CDNs) are sometimes viewed as another emerging choke point, because they are seen as essential in mitigating Distributed Denial-of-Service (DDoS) attacks. While there appears to be a healthy market of CDNs (and similar services) and the costs of using one have been driven down considerably over the years, current reliance on them suggests that there is a risk of a choke point forming -- as there is wherever a function is critical to the Internet’s operation.
+Content Delivery Networks (CDNs) are sometimes viewed as another emerging choke point, because they are seen as essential in mitigating Distributed Denial-of-Service (DDoS) attacks. While there appears to be a healthy market of CDNs (and similar services) and the costs of using one have been driven down considerably over the years, some suggest that there is a risk of a choke point forming -- as there is wherever a function is critical to the Internet’s operation.
 
 When such a choke point forms, one possible way to counter its ill effects is regulation, either externally or within the Internet ecosystem (e.g., as ICANN does).  While it may be appropriate as a solution -- especially when a monopoly forms -- the effect of regulation on the architecture need to be evaluated carefully.
 
