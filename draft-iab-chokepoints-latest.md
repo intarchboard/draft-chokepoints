@@ -52,7 +52,7 @@ This design goal extends to the entities that operate the Internet. For example,
 
 However, there are some cases when there is an unavoidable choke point. For example, as a central source of truth regarding naming, administration of the name space within the Domain Name System is a necessary choke point.
 
-When an Internet choke point can't be avoided, we assure that it is administered by multiple parties with balanced interests, often referred to as the [Multi-Stakeholder Model](https://en.wikipedia.org/wiki/Multistakeholder_governance_model). In the case of the Domain Name System, oversight is performed by ICANN.
+When an Internet choke point can't be avoided, we assure that it is administered by multiple parties with balanced interests, often referred to as the [Multi-Stakeholder Model](https://en.wikipedia.org/wiki/Multistakeholder_governance_model). In the case of the Domain Name System, oversight is performed by ICANN, a multi-stakeholder organisation.
 
 Similarly, the specifications that describe the Internet and the Web form another potential choke point, since they mediate how most people use the Internet. For these, standardization is overseen by the World Wide Web consortium and the IETF, both of whom subscribe to [open standards principles](https://open-stand.org/infographic-the-benefits-of-open-standards/).
 
