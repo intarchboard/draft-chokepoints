@@ -39,7 +39,7 @@ In fact, the Internet is both architected and administered to preclude any one e
 
 # Choke Points on the Internet
 
-A large influence on the architecture of the Internet was [a need to survive nuclear attack}(https://www.rand.org/content/dam/rand/pubs/papers/2008/P1995.pdf), so that loss of no one link or node would preclude communication. This extends not only to the physical links that make up the Internet (seen, for example, in the duplication of submarine internet links), but also to the various services that Internet access depends upon; for example, the operation of multiple DNS root servers.
+A large influence on the architecture of the Internet was [a need to survive nuclear attack](https://www.rand.org/content/dam/rand/pubs/papers/2008/P1995.pdf), so that loss of no one link or node would preclude communication. This extends not only to the physical links that make up the Internet (seen, for example, in the duplication of submarine internet links), but also to the various services that Internet access depends upon; for example, the operation of multiple DNS root servers.
 
 Avoiding choke points is both a design goal for both the protocols and the services that make network access and operations possible, as well as an assumption made by each layer and service about its dependencies. The resilience of the Internet depends on this assumption.
 
