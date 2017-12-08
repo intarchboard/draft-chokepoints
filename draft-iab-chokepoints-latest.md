@@ -28,13 +28,18 @@ author:
 
 --- abstract
 
+This memo discusses points of control on the Internet, or "choke points", that may have architectural impact.
+
+--- middle
+
+
+# Introduction
+
 Recent events have caused concern about control of access to the Internet, leading one infrastructure company's CEO to reportedly assert:
 
 > Literally, I woke up in a bad mood and decided someone shouldn’t be allowed on the Internet. No one should have that power.
 
 In fact, the Internet is both architected and administered to preclude any one entity from having this power, through the careful management of “choke points” where such power could be exercised.
-
---- middle
 
 
 # Choke Points on the Internet
