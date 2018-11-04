@@ -48,7 +48,7 @@ A large influence on the architecture of the Internet was [a need to survive nuc
 
 Avoiding choke points is both a design goal for both the protocols and the services that make network access and operations possible, as well as an assumption made by each layer and service about its dependencies. The resilience of the Internet depends on this assumption.
 
-This design goal extends to the entities that operate the Internet. For example, not only are there multiple DNS root servers, but we also assure that they are operated by a number of parties, many of whom compete against each other.
+This extends to the entities that operate the Internet. For example, not only are there multiple DNS root servers, but we also assure that they are operated by a number of parties, many of whom compete against each other.
 
 However, there are some cases when there is an unavoidable choke point. For example, as a central source of truth regarding naming, administration of the name space within the Domain Name System is a necessary choke point.
 
