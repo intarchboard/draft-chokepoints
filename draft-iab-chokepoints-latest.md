@@ -44,41 +44,75 @@ In fact, the Internet is both architected and administered to preclude any one e
 
 # Choke Points on the Internet
 
-A large influence on the architecture of the Internet was [a need to survive nuclear attack](https://www.rand.org/content/dam/rand/pubs/papers/2008/P1995.pdf), so that loss of no one link or node would preclude communication. This extends not only to the physical links that make up the Internet (seen, for example, in the [duplication of submarine internet links](http://submarine-cable-map-2016.telegeography.com/)), but also to the various services that Internet access depends upon; for example, the operation of [multiple DNS root servers](http://root-servers.org/).
+A large influence on the architecture of the Internet was [a need to survive nuclear attack](https://www.rand.org/content/dam/rand/pubs/papers/2008/P1995.pdf), so that loss of no one link or node would preclude communication overall. Although in some places Internet access is at risk -- especially when there is not adequate diversity of access available -- the Internet as a whole has proven resilient in the face of such physical disruptions. 
 
-Avoiding choke points is both a design goal for both the protocols and the services that make network access and operations possible, as well as an assumption made by each layer and service about its dependencies. The resilience of the Internet depends on this assumption.
+This desire for resilience is reflected in the modern Internet through measures like the [duplication of submarine internet links](https://submarine-cable-map-2018.telegeography.com). 
 
-This extends to the entities that operate the Internet. For example, not only are there multiple DNS root servers, but we also assure that they are operated by a number of parties, many of whom compete against each other.
+However, it is not limited to the physical components of the Internet; it also extends to the various services that Internet access depends upon, and the protocols that it uses. For example, there are [multiple DNS root servers](http://root-servers.org/), operated by a number of parties.
 
-However, there are some cases when there is an unavoidable choke point. For example, as a central source of truth regarding naming, administration of the name space within the Domain Name System is a necessary choke point.
+When any one component -- through its design or the constraints upon its use -- has the ability to deny access to the Internet (accidentally or not) or control its use, we call this a choke point. 
 
-When an Internet choke point can't be avoided, we assure that it is administered by multiple parties with balanced interests, often referred to as the [Multi-Stakeholder Model](https://en.wikipedia.org/wiki/Multistakeholder_governance_model). In the case of the Domain Name System, oversight is performed by ICANN, a multi-stakeholder organisation.
+Avoiding choke points is both a design goal for both the protocols and the services that make network access and operations possible, as well as an assumption made by each layer and service about its dependencies. The resilience and long-term health of the Internet depends on this assumption.
+
+This does not mean that we can prevent all possible choke points; if a node has only one connection to the Internet, that link will be able to deny access no matter what measures we take. Instead, our aim is to avoid unnecessary choke points, especially when they can influence large portions of the Internet.
+
+## More than Resilience
+
+As John Gilmore said, “the internet interprets censorship as damage and routes around it.” Censorship and other forms of control relies on having an opportunity to exercise that control. Limiting the number of choke points and assuring that any unavoidable points are appropriately administered allows this valuable architectural property to persist.
+
+This emergent property of the Internet has proven to be one of its core features. By providing resilient communication, it also provides 
+
+At the same time, the Internet’s composition as a network of independent networks is valuable; imposing unnecessary constraints upon them is to be avoided. However, this does not mean that internet infrastructure providers are without guidance; in particular we note that the UN’s [Guiding Principles on Business and Human Rights](http://www.ohchr.org/Documents/Publications/GuidingPrinciplesBusinessHR_EN.pdf) is an already-existing framework for businesses (including Internet infrastructure providers) to make such decisions within while still respecting human rights -- including the right to Internet access.
+
+
+# Identifying Potential Choke Points
+
+new protocols and protocol extensions
+
+existing protocols
+
+# Techniques for Managing Potential Choke Points 
+
+There are some cases when there is an unavoidable choke point. For example, as the source of truth regarding naming, administration of domain names is currently a necessary choke point in the Internet architecture.
+
+## Avoiding Choke Points
+
+A choke point can often be avoided through good protocol design. 
+
+- distributed
+- avoid discriminators
+- avoid adding new roles
+
+## Balancing Interests
+
+- create balanced markets
+- standards
+- federated systems
+
+For example, Content Delivery Networks (CDNs) are sometimes viewed as another emerging choke point, because they are seen as essential in mitigating Distributed Denial-of-Service (DDoS) attacks. While there appears to be a healthy market of CDNs (and similar services) and the costs of using one have been driven down considerably over the years, some suggest that there is a risk of a choke point forming -- as there is wherever a function is critical to the Internet’s operation.
+
+## Multi-Stakeholder Administration
+
+Another technique for mitigating an unavoidable choke point is through formal delegation of its administration to multiple parties with balanced interests, often referred to as the [Multi-Stakeholder Model](https://en.wikipedia.org/wiki/Multistakeholder_governance_model). 
+
+For example, in the case of domain names such oversight is performed by ICANN, a multi-stakeholder organisation.
 
 Similarly, the specifications that describe the Internet and the Web form another potential choke point, since they mediate how most people use the Internet. For these, standardization is overseen by the World Wide Web consortium and the IETF, both of whom subscribe to [open standards principles](https://open-stand.org/infographic-the-benefits-of-open-standards/).
 
 Together, these architectural principles and corresponding practices assure that no one person, business or government can control the entire Internet.
 
-# Emerging Choke Points
+## External Regulation
 
-In some cases, external factors encourage the formation of a new choke point despite the efforts
-outlined above. For example, near-monopolies on “last-mile” Internet access in some jurisdictions have led to concerns about [network neutrality](http://www.internetsociety.org/net-neutrality), since they act as a choke point.
+Another possible way to counter the ill effects of a choke point is through legal means, for example regulation.  While it may be appropriate as a solution -- especially when a monopoly forms -- the effect of regulation on the architecture need to be evaluated carefully.
 
-Content Delivery Networks (CDNs) are sometimes viewed as another emerging choke point, because they are seen as essential in mitigating Distributed Denial-of-Service (DDoS) attacks. While there appears to be a healthy market of CDNs (and similar services) and the costs of using one have been driven down considerably over the years, some suggest that there is a risk of a choke point forming -- as there is wherever a function is critical to the Internet’s operation.
+For example, near-monopolies on “last-mile” Internet access in some jurisdictions have led to concerns about [network neutrality](http://www.internetsociety.org/net-neutrality), since they act as a choke point.
 
-When such a choke point forms, one possible way to counter its ill effects is regulation, either externally or within the Internet ecosystem (e.g., as ICANN does).  While it may be appropriate as a solution -- especially when a monopoly forms -- the effect of regulation on the architecture need to be evaluated carefully.
+Historically, the Internet has worked best as a network-of-networks, where each has administrative control to make decisions about local connectivity. Imposing external constraints on how networks select their members and who they communicate with could have far-reaching effects, especially since they are often already subject to a variety of local laws and regulations.
 
-Historically, the Internet has worked best as a network-of-networks, where each has administrative control to make decisions about who is allowed to connect locally. Imposing external constraints on how networks select their members and who they communicate with could have far-reaching effects, especially since they are often already subject to a variety of local laws and regulations.
-
-Ensuring that choke points don’t form is preferable to enshrining them, since they introduce not only points of control, but also increase the risk of failure in that component, concentrate the risk of security vulnerabilities there, and can ultimately limit the scale of the Internet.
+Ensuring that choke points don’t form is preferable to enshrining them in regulation, since they introduce not only points of control, but also increase the risk of failure in that component, concentrate the risk of security vulnerabilities there, and can ultimately limit the scale of the Internet.
 
 Therefore, when there is risk of a choke point forming, we look for other mitigations before considering constraints on the behaviour of infrastructure providers. This might take place through encouraging more diversity at the potential choke point, technical measures that counteract its formation, or other means.
 
-
-# Avoid Choke Points
-
-As John Gilmore said, “the internet interprets censorship as damage and routes around it.” Censorship is a form of control that relies on having an opportunity to exercise control. Limiting the number of choke points and assuring that any unavoidable points are appropriately administered allows this valuable architectural property to persist.
-
-At the same time, the Internet’s composition as a network of independent networks is valuable; imposing external controls on them is to be avoided. However, this does not mean that internet infrastructure providers are without guidance; we note that the UN’s [Guiding Principles on Business and Human Rights](http://www.ohchr.org/Documents/Publications/GuidingPrinciplesBusinessHR_EN.pdf) is an already-existing framework for businesses (including Internet infrastructure providers) to make such decisions within while still respecting human rights -- including the right to Internet access.
 
 
 --- back
