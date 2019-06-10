@@ -1,7 +1,7 @@
 ---
 title: Internet Choke Points
 docname: draft-iab-chokepoints-latest
-date: 2018
+date: 
 category: info
 
 ipr: trust200902
@@ -24,16 +24,25 @@ author:
     name: Brian Trammell
     organization:
     email: ietf@trammell.ch
+    uri: https://trammell.ch
 
 
 --- abstract
 
-This memo discusses points of control on the Internet, or "choke points", that may have architectural impact.
+This memo discusses "choke points" in the Internet architecture and the
+governance structures surrounding it. A choke point occurs where one single
+entity or a small number of entities have the ability to make decisions with
+wide-ranging or global impact some aspect of the use of the Internet. It
+explores the implications these choke points have on the health of the Internet
+as a global communications infrastructure, and provides guidance for avoiding
+the creation of future choke points.
 
 --- middle
 
 
 # Introduction
+
+[EDITOR'S NOTE: bring this up to date. keep the quote below but be a bit more Ripped From Today's Headlines ]
 
 Recent events have caused concern about control of access to the Internet, leading one infrastructure company's CEO to reportedly assert:
 
@@ -60,16 +69,34 @@ This does not mean that we can prevent all possible choke points; if a node has 
 
 As John Gilmore said, “the internet interprets censorship as damage and routes around it.” Censorship and other forms of control relies on having an opportunity to exercise that control. Limiting the number of choke points and assuring that any unavoidable points are appropriately administered allows this valuable architectural property to persist.
 
-This emergent property of the Internet has proven to be one of its core features. By providing resilient communication, it also provides 
+This emergent property of the Internet has proven to be one of its core features. By providing resilient communication, it also provides [EDITOR'S NOTE: missing sentence end]
 
 At the same time, the Internet’s composition as a network of independent networks is valuable; imposing unnecessary constraints upon them is to be avoided. However, this does not mean that internet infrastructure providers are without guidance; in particular we note that the UN’s [Guiding Principles on Business and Human Rights](http://www.ohchr.org/Documents/Publications/GuidingPrinciplesBusinessHR_EN.pdf) is an already-existing framework for businesses (including Internet infrastructure providers) to make such decisions within while still respecting human rights -- including the right to Internet access.
 
 
 # Identifying Potential Choke Points
 
-new protocols and protocol extensions
+[EDITOR'S NOTE: IMO (brian) this is more useful if split by why the choke point emerges, not past/future. Not sure the list of subsections below is exhaustive.]
 
-existing protocols
+## Physical Infrastructure
+
+[EDITOR'S NOTE: usually a local problem: if there is only one access provider in a given area, that access provider is the Internet choke point from the point of view of users in the area.  Note that physical monopolies are the focus of the network neutrality debate in some jurisdictions.]
+
+## Protocol Bootstrapping
+
+[EDITOR'S NOTE: some chokepoints emerge because a protocol is designed to point to some piece of infrastructure to start itself up. Question: does the DoH case fit here?]
+
+- DNS root servers
+- others?
+
+## Roots of Trust
+
+[EDITOR'S NOTE: lots of chokepoints in existing protocols are associated with defining trust roots.]
+
+- DNS: one global trust root, under ICANN policy control
+- RPKI: one trust root per RIR, under RIR policy control
+- Web PKI: largish set of trust roots, managed by platform/browser vendors, under CAB forum policy control (?)
+- others?
 
 # Techniques for Managing Potential Choke Points 
 
@@ -100,6 +127,10 @@ For example, in the case of domain names such oversight is performed by ICANN, a
 Similarly, the specifications that describe the Internet and the Web form another potential choke point, since they mediate how most people use the Internet. For these, standardization is overseen by the World Wide Web consortium and the IETF, both of whom subscribe to [open standards principles](https://open-stand.org/infographic-the-benefits-of-open-standards/).
 
 Together, these architectural principles and corresponding practices assure that no one person, business or government can control the entire Internet.
+
+## Plausible Replaciblilty
+
+[EDITOR'S NOTE: discuss the case of "big red buttons": if it is impossible to avoid a choke point in the architecture such as a single trust root, design the governance around the choke point such that (1) governance is split from execution and (2) execution can be switched to another entity. This option should be designed in such a way that the disruption caused by exercising it would be small enough to make the threat plausible.]
 
 ## External Regulation
 
