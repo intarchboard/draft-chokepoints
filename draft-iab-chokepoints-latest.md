@@ -91,12 +91,28 @@ At the same time, the Internet’s composition as a network of independent netwo
 
 ## Roots of Trust
 
-[EDITOR'S NOTE: lots of chokepoints in existing protocols are associated with defining trust roots.]
+[EDITOR'S NOTE: everything below needs citations.]
 
-- DNS: one global trust root, under ICANN policy control
-- RPKI: one trust root per RIR, under RIR policy control
-- Web PKI: largish set of trust roots, managed by platform/browser vendors, under CAB forum policy control (?)
-- others?
+Asymmertric-key cryptographic protection of the security properties of protocols
+using requires a method to define and agree upon the roots of trust for the
+public-key infrastucture (PKI) associated with the protocol. Sometimes, there is
+a single global root, as in the case with the Root Key Signing Key (KSK) in
+DNSSEC. Sometimes, roots of trust are regionally distributed, as is the case
+with the routing public-key infrastructure (RPKI), with one root per Regional
+Internet Registry (RIR). Still other PKIs have arbitrarily many trust roots: in
+the case of the Web PKI, each Certificate Authority has its own root,
+individually trusted on a per-browser or per-platform basis.
+
+Each trust root is associated with a governance structure to ensure proper
+oversight over control of the root. For example, the DNSSEC root is administered
+according to ICANN's policy process, the RPKI by each RIR's policy process, and
+the Web PKI by the CA/Browser Forum.
+
+Creating a new PKI for a protocol unavoidably creates a new chokepoint for the
+protocol covered by the PKI, represented by the PKI's root, and requires the
+creation of a new governance  However, reusing an existing PKI for a new related
+protocol creates a dependency between policies covering the new protocol and
+those covering the existing protocol, which may or may not be appropriate.
 
 # Techniques for Managing Potential Choke Points 
 
