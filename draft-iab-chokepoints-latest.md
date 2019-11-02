@@ -29,7 +29,11 @@ author:
 
 --- abstract
 
-This memo discusses "choke points" in the Internet architecture and the governance structures surrounding it. A choke point occurs where one single entity or a small number of entities have the ability to make decisions with wide-ranging or global impact some aspect of the use of the Internet. It explores the implications these choke points have on the health of the Internet as a global communications infrastructure, and provides guidance for avoiding the creation of future choke points.
+This memo discusses "choke points" in the Internet architecture and the governance structures surrounding them.
+
+A choke point occurs where one single entity or a small number of entities have the ability to make decisions with wide-ranging or global impact some aspect of the use of the Internet.
+
+We explore the implications these choke points have on the health of the Internet as a global communications infrastructure, and provide guidance for avoiding the creation of future choke points.
 
 --- middle
 
