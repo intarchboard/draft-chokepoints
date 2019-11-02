@@ -78,9 +78,18 @@ At the same time, the Internet’s composition as a network of independent netwo
 
 [EDITOR'S NOTE: IMO (brian) this is more useful if split by why the choke point emerges, not past/future. Not sure the list of subsections below is exhaustive.]
 
-## Physical Infrastructure
+## Access Infrastructure
 
-[EDITOR'S NOTE: usually a local problem: if there is only one access provider in a given area, that access provider is the Internet choke point from the point of view of users in the area.  Note that physical monopolies are the focus of the network neutrality debate in some jurisdictions.]
+Some areas have regulated or de-facto monopolies on network access, whether at
+the physical, medium, or network layers. Connecting to the Internet in this case
+requires dealing with one and only one access provider, which forms a natural
+chokepoint. An actor in control of an access chokepoint can exercise nearly
+total control over the Internet traffic of those forced to use it.
+
+Avoiding access chokepoints is a key focus of the network neutrality debate, and
+regulations in some countries to prevent the formation of access monopolies. 
+
+[EDITOR'S NOTE: citations would be nice here.]
 
 ## Protocol Bootstrapping
 
