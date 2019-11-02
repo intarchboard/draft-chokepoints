@@ -29,13 +29,7 @@ author:
 
 --- abstract
 
-This memo discusses "choke points" in the Internet architecture and the
-governance structures surrounding it. A choke point occurs where one single
-entity or a small number of entities have the ability to make decisions with
-wide-ranging or global impact some aspect of the use of the Internet. It
-explores the implications these choke points have on the health of the Internet
-as a global communications infrastructure, and provides guidance for avoiding
-the creation of future choke points.
+This memo discusses "choke points" in the Internet architecture and the governance structures surrounding it. A choke point occurs where one single entity or a small number of entities have the ability to make decisions with wide-ranging or global impact some aspect of the use of the Internet. It explores the implications these choke points have on the health of the Internet as a global communications infrastructure, and provides guidance for avoiding the creation of future choke points.
 
 --- middle
 
@@ -80,14 +74,9 @@ At the same time, the Internet’s composition as a network of independent netwo
 
 ## Access Infrastructure
 
-Some areas have regulated or de-facto monopolies on network access, whether at
-the physical, medium, or network layers. Connecting to the Internet in this case
-requires dealing with one and only one access provider, which forms a natural
-chokepoint. An actor in control of an access chokepoint can exercise nearly
-total control over the Internet traffic of those forced to use it.
+Some areas have regulated or de-facto monopolies on network access, whether at the physical, medium, or network layers. Connecting to the Internet in this case requires dealing with one and only one access provider, which forms a natural chokepoint. An actor in control of an access chokepoint can exercise nearly total control over the Internet traffic of those forced to use it.
 
-Avoiding access chokepoints is a key focus of the network neutrality debate, and
-regulations in some countries to prevent the formation of access monopolies. 
+Avoiding access chokepoints is a key focus of the network neutrality debate, and regulations in some countries to prevent the formation of access monopolies. 
 
 [EDITOR'S NOTE: citations would be nice here.]
 
@@ -102,26 +91,11 @@ regulations in some countries to prevent the formation of access monopolies.
 
 [EDITOR'S NOTE: everything below needs citations.]
 
-Asymmertric-key cryptographic protection of the security properties of protocols
-using requires a method to define and agree upon the roots of trust for the
-public-key infrastucture (PKI) associated with the protocol. Sometimes, there is
-a single global root, as in the case with the Root Key Signing Key (KSK) in
-DNSSEC. Sometimes, roots of trust are regionally distributed, as is the case
-with the routing public-key infrastructure (RPKI), with one root per Regional
-Internet Registry (RIR). Still other PKIs have arbitrarily many trust roots: in
-the case of the Web PKI, each Certificate Authority has its own root,
-individually trusted on a per-browser or per-platform basis.
+Asymmertric-key cryptographic protection of the security properties of protocolsusing requires a method to define and agree upon the roots of trust for thepublic-key infrastucture (PKI) associated with the protocol. Sometimes, there isa single global root, as in the case with the Root Key Signing Key (KSK) inDNSSEC. Sometimes, roots of trust are regionally distributed, as is the casewith the routing public-key infrastructure (RPKI), with one root per RegionalInternet Registry (RIR). Still other PKIs have arbitrarily many trust roots: inthe case of the Web PKI, each Certificate Authority has its own root,individually trusted on a per-browser or per-platform basis.
 
-Each trust root is associated with a governance structure to ensure proper
-oversight over control of the root. For example, the DNSSEC root is administered
-according to ICANN's policy process, the RPKI by each RIR's policy process, and
-the Web PKI by the CA/Browser Forum.
+Each trust root is associated with a governance structure to ensure properoversight over control of the root. For example, the DNSSEC root is administeredaccording to ICANN's policy process, the RPKI by each RIR's policy process, andthe Web PKI by the CA/Browser Forum.
 
-Creating a new PKI for a protocol unavoidably creates a new chokepoint for the
-protocol covered by the PKI, represented by the PKI's root, and requires the
-creation of a new governance  However, reusing an existing PKI for a new related
-protocol creates a dependency between policies covering the new protocol and
-those covering the existing protocol, which may or may not be appropriate.
+Creating a new PKI for a protocol unavoidably creates a new chokepoint for theprotocol covered by the PKI, represented by the PKI's root, and requires thecreation of a new governance  However, reusing an existing PKI for a new relatedprotocol creates a dependency between policies covering the new protocol andthose covering the existing protocol, which may or may not be appropriate.
 
 # Techniques for Managing Potential Choke Points 
 
@@ -155,36 +129,16 @@ Together, these architectural principles and corresponding practices assure that
 
 ## Capture Avoidance
 
-An architectural choke point in the Internet, even if well-protected by a
-multi-stakeholder governance structure, represents an attractive target to
-entities that would like to control or disrupt Internet activity. These
-governance structures should therefore be designed to be resistent to capture by
-any one entity or set of entities representing a single interest in how the
-choke point should be administered. 
+An architectural choke point in the Internet, even if well-protected by amulti-stakeholder governance structure, represents an attractive target toentities that would like to control or disrupt Internet activity. Thesegovernance structures should therefore be designed to be resistent to capture byany one entity or set of entities representing a single interest in how thechoke point should be administered. 
 
-Part of this is simply good governance design, ensuring that oversight functions
-are sufficiently independent from administrative functions in the operation of a
-choke point that capture of one does not imply capture of the other. This
-independence also allows for plausible replaceablilty. The threat that a
-captured execution function, or a captured function at some point in the
-oversight chain, could simply be replaced, increases the cost of successful
-capture. 
+Part of this is simply good governance design, ensuring that oversight functionsare sufficiently independent from administrative functions in the operation of achoke point that capture of one does not imply capture of the other. Thisindependence also allows for plausible replaceablilty. The threat that acaptured execution function, or a captured function at some point in theoversight chain, could simply be replaced, increases the cost of successfulcapture. 
 
-Each choke point's capture avoidance strategy is dependent on the nature of the
-choke point. Depending on the choke point, general elements of such a strategy
-may include:
+Each choke point's capture avoidance strategy is dependent on the nature of thechoke point. Depending on the choke point, general elements of such a strategymay include:
 
-- the incorporation of legal entities representing each execution and oversight
-  function in a diversity of legal jurisdictions, to prevent capture by a single
-  government;
-- the selection of members of oversight bodies from diverse jurisdictions and
-  affiliations, to prevent those capture by a small number of government(s)
-  and/or employer(s);
-- the arrangement of funding stream diversity for oversight and execution
-  functions, to prevent capture by a small number of funders; and/or
-- the open publication of any software tooling and/or data necessary to drive an
-  execution function, to the extent possible, in order to increase the
-  plausibility of replacement.
+- the incorporation of legal entities representing each execution and oversight  function in a diversity of legal jurisdictions, to prevent capture by a single  government;
+- the selection of members of oversight bodies from diverse jurisdictions and affiliations, to prevent those capture by a small number of government(s)  and/or employer(s);
+- the arrangement of funding stream diversity for oversight and execution  functions, to prevent capture by a small number of funders; and/or
+- the open publication of any software tooling and/or data necessary to drive an execution function, to the extent possible, in order to increase the  plausibility of replacement.
 
 ## External Regulation
 
