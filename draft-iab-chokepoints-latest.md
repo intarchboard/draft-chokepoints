@@ -1,7 +1,7 @@
 ---
 title: Internet Choke Points
 docname: draft-iab-chokepoints-latest
-date: 
+date:
 category: info
 
 ipr: trust200902
@@ -51,13 +51,13 @@ In fact, the Internet is both architected and administered to preclude any one e
 
 # Choke Points on the Internet
 
-A large influence on the architecture of the Internet was [a need to survive nuclear attack](https://www.rand.org/content/dam/rand/pubs/papers/2008/P1995.pdf), so that loss of no one link or node would preclude communication overall. Although in some places Internet access is at risk -- especially when there is not adequate diversity of access available -- the Internet as a whole has proven resilient in the face of such physical disruptions. 
+A large influence on the architecture of the Internet was [a need to survive nuclear attack](https://www.rand.org/content/dam/rand/pubs/papers/2008/P1995.pdf), so that loss of no one link or node would preclude communication overall. This desire for resilience is reflected in the modern Internet through measures like the [duplication of submarine internet links](https://submarine-cable-map-2018.telegeography.com).
 
-This desire for resilience is reflected in the modern Internet through measures like the [duplication of submarine internet links](https://submarine-cable-map-2018.telegeography.com). 
+Although in some places Internet access is at risk -- especially when there is not adequate diversity of access available -- the Internet as a whole has proven resilient in the face of such physical disruptions.
 
-However, it is not limited to the physical components of the Internet; it also extends to the various services that Internet access depends upon, and the protocols that it uses. For example, there are [multiple DNS root servers](http://root-servers.org/), operated by a number of parties.
+However, its resilience not limited to the physical components of the Internet; it also extends to the various services that Internet access depends upon, and the protocols that it uses. For example, there are [multiple DNS root servers](http://root-servers.org/), operated by a number of parties to provide protection from not only physical disruption, but also political and other disruption caused by such a vital service being controlled by one entity.
 
-When any one component -- through its design or the constraints upon its use -- has the ability to deny access to the Internet (accidentally or not) or control its use, we call this a choke point. 
+When any one component -- through its design or the constraints upon its use -- has the ability to deny access to the Internet (accidentally or not) or control its use, we call this a choke point.
 
 Avoiding choke points is both a design goal for both the protocols and the services that make network access and operations possible, as well as an assumption made by each layer and service about its dependencies. The resilience and long-term health of the Internet depends on this assumption.
 
@@ -80,7 +80,7 @@ At the same time, the Internet’s composition as a network of independent netwo
 
 Some areas have regulated or de-facto monopolies on network access, whether at the physical, medium, or network layers. Connecting to the Internet in this case requires dealing with one and only one access provider, which forms a natural chokepoint. An actor in control of an access chokepoint can exercise nearly total control over the Internet traffic of those forced to use it.
 
-Avoiding access chokepoints is a key focus of the network neutrality debate, and regulations in some countries to prevent the formation of access monopolies. 
+Avoiding access chokepoints is a key focus of the network neutrality debate, and regulations in some countries to prevent the formation of access monopolies.
 
 [EDITOR'S NOTE: citations would be nice here.]
 
@@ -101,13 +101,13 @@ Each trust root is associated with a governance structure to ensure properoversi
 
 Creating a new PKI for a protocol unavoidably creates a new chokepoint for theprotocol covered by the PKI, represented by the PKI's root, and requires thecreation of a new governance  However, reusing an existing PKI for a new relatedprotocol creates a dependency between policies covering the new protocol andthose covering the existing protocol, which may or may not be appropriate.
 
-# Techniques for Managing Potential Choke Points 
+# Techniques for Managing Potential Choke Points
 
 There are some cases when there is an unavoidable choke point. For example, as the source of truth regarding naming, administration of domain names is currently a necessary choke point in the Internet architecture.
 
 ## Avoiding Choke Points
 
-A choke point can often be avoided through good protocol design. 
+A choke point can often be avoided through good protocol design.
 
 - distributed
 - avoid discriminators
@@ -123,7 +123,7 @@ For example, Content Delivery Networks (CDNs) are sometimes viewed as another em
 
 ## Multi-Stakeholder Administration
 
-Another technique for mitigating an unavoidable choke point is through formal delegation of its administration to multiple parties with balanced interests, often referred to as the [Multi-Stakeholder Model](https://en.wikipedia.org/wiki/Multistakeholder_governance_model). 
+Another technique for mitigating an unavoidable choke point is through formal delegation of its administration to multiple parties with balanced interests, often referred to as the [Multi-Stakeholder Model](https://en.wikipedia.org/wiki/Multistakeholder_governance_model).
 
 For example, in the case of domain names such oversight is performed by ICANN, a multi-stakeholder organisation.
 
@@ -133,9 +133,9 @@ Together, these architectural principles and corresponding practices assure that
 
 ## Capture Avoidance
 
-An architectural choke point in the Internet, even if well-protected by amulti-stakeholder governance structure, represents an attractive target toentities that would like to control or disrupt Internet activity. Thesegovernance structures should therefore be designed to be resistent to capture byany one entity or set of entities representing a single interest in how thechoke point should be administered. 
+An architectural choke point in the Internet, even if well-protected by amulti-stakeholder governance structure, represents an attractive target toentities that would like to control or disrupt Internet activity. Thesegovernance structures should therefore be designed to be resistent to capture byany one entity or set of entities representing a single interest in how thechoke point should be administered.
 
-Part of this is simply good governance design, ensuring that oversight functionsare sufficiently independent from administrative functions in the operation of achoke point that capture of one does not imply capture of the other. Thisindependence also allows for plausible replaceablilty. The threat that acaptured execution function, or a captured function at some point in theoversight chain, could simply be replaced, increases the cost of successfulcapture. 
+Part of this is simply good governance design, ensuring that oversight functionsare sufficiently independent from administrative functions in the operation of achoke point that capture of one does not imply capture of the other. Thisindependence also allows for plausible replaceablilty. The threat that acaptured execution function, or a captured function at some point in theoversight chain, could simply be replaced, increases the cost of successfulcapture.
 
 Each choke point's capture avoidance strategy is dependent on the nature of thechoke point. Depending on the choke point, general elements of such a strategymay include:
 
