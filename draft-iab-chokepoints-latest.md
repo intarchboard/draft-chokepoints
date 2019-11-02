@@ -137,9 +137,38 @@ Similarly, the specifications that describe the Internet and the Web form anothe
 
 Together, these architectural principles and corresponding practices assure that no one person, business or government can control the entire Internet.
 
-## Plausible Replaciblilty
+## Capture Avoidance
 
-[EDITOR'S NOTE: discuss the case of "big red buttons": if it is impossible to avoid a choke point in the architecture such as a single trust root, design the governance around the choke point such that (1) governance is split from execution and (2) execution can be switched to another entity. This option should be designed in such a way that the disruption caused by exercising it would be small enough to make the threat plausible.]
+An architectural choke point in the Internet, even if well-protected by a
+multi-stakeholder governance structure, represents an attractive target to
+entities that would like to control or disrupt Internet activity. These
+governance structures should therefore be designed to be resistent to capture by
+any one entity or set of entities representing a single interest in how the
+choke point should be administered. 
+
+Part of this is simply good governance design, ensuring that oversight functions
+are sufficiently independent from administrative functions in the operation of a
+choke point that capture of one does not imply capture of the other. This
+independence also allows for plausible replaceablilty. The threat that a
+captured execution function, or a captured function at some point in the
+oversight chain, could simply be replaced, increases the cost of successful
+capture. 
+
+Each choke point's capture avoidance strategy is dependent on the nature of the
+choke point. Depending on the choke point, general elements of such a strategy
+may include:
+
+- the incorporation of legal entities representing each execution and oversight
+  function in a diversity of legal jurisdictions, to prevent capture by a single
+  government;
+- the selection of members of oversight bodies from diverse jurisdictions and
+  affiliations, to prevent those capture by a small number of government(s)
+  and/or employer(s);
+- the arrangement of funding stream diversity for oversight and execution
+  functions, to prevent capture by a small number of funders; and/or
+- the open publication of any software tooling and/or data necessary to drive an
+  execution function, to the extent possible, in order to increase the
+  plausibility of replacement.
 
 ## External Regulation
 
