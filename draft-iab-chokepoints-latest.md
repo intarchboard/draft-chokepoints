@@ -95,11 +95,11 @@ Avoiding access chokepoints is a key focus of the network neutrality debate, and
 
 [EDITOR'S NOTE: everything below needs citations.]
 
-Asymmertric-key cryptographic protection of the security properties of protocolsusing requires a method to define and agree upon the roots of trust for thepublic-key infrastucture (PKI) associated with the protocol. Sometimes, there isa single global root, as in the case with the Root Key Signing Key (KSK) inDNSSEC. Sometimes, roots of trust are regionally distributed, as is the casewith the routing public-key infrastructure (RPKI), with one root per RegionalInternet Registry (RIR). Still other PKIs have arbitrarily many trust roots: inthe case of the Web PKI, each Certificate Authority has its own root,individually trusted on a per-browser or per-platform basis.
+A symmertric-key cryptographic protection of the security properties of protocols using requires a method to define and agree upon the roots of trust for the public-key infrastucture (PKI) associated with the protocol. Sometimes, there isa single global root, as in the case with the Root Key Signing Key (KSK) inDNSSEC. Sometimes, roots of trust are regionally distributed, as is the case with the routing public-key infrastructure (RPKI), with one root per Regional Internet Registry (RIR). Still other PKIs have arbitrarily many trust roots: in the case of the Web PKI, each Certificate Authority has its own root, individually trusted on a per-browser or per-platform basis.
 
-Each trust root is associated with a governance structure to ensure properoversight over control of the root. For example, the DNSSEC root is administeredaccording to ICANN's policy process, the RPKI by each RIR's policy process, andthe Web PKI by the CA/Browser Forum.
+Each trust root is associated with a governance structure to ensure proper oversight over control of the root. For example, the DNSSEC root is administered according to ICANN's policy process, the RPKI by each RIR's policy process, and the Web PKI by the CA/Browser Forum.
 
-Creating a new PKI for a protocol unavoidably creates a new chokepoint for theprotocol covered by the PKI, represented by the PKI's root, and requires thecreation of a new governance  However, reusing an existing PKI for a new relatedprotocol creates a dependency between policies covering the new protocol andthose covering the existing protocol, which may or may not be appropriate.
+Creating a new PKI for a protocol unavoidably creates a new chokepoint for the protocol covered by the PKI, represented by the PKI's root, and requires the creation of a new governance  However, reusing an existing PKI for a new related protocol creates a dependency between policies covering the new protocol and those covering the existing protocol, which may or may not be appropriate.
 
 # Techniques for Managing Potential Choke Points
 
@@ -133,11 +133,11 @@ Together, these architectural principles and corresponding practices assure that
 
 ## Capture Avoidance
 
-An architectural choke point in the Internet, even if well-protected by amulti-stakeholder governance structure, represents an attractive target toentities that would like to control or disrupt Internet activity. Thesegovernance structures should therefore be designed to be resistent to capture byany one entity or set of entities representing a single interest in how thechoke point should be administered.
+An architectural choke point in the Internet, even if well-protected by a multi-stakeholder governance structure, represents an attractive target to entities that would like to control or disrupt Internet activity. These governance structures should therefore be designed to be resistent to capture by any one entity or set of entities representing a single interest in how the choke point should be administered.
 
-Part of this is simply good governance design, ensuring that oversight functionsare sufficiently independent from administrative functions in the operation of achoke point that capture of one does not imply capture of the other. Thisindependence also allows for plausible replaceablilty. The threat that acaptured execution function, or a captured function at some point in theoversight chain, could simply be replaced, increases the cost of successfulcapture.
+Part of this is simply good governance design, ensuring that oversight functions are sufficiently independent from administrative functions in the operation of a choke point that capture of one does not imply capture of the other. This independence also allows for plausible replaceablilty. The threat that a captured execution function, or a captured function at some point in the oversight chain, could simply be replaced, increases the cost of successful capture.
 
-Each choke point's capture avoidance strategy is dependent on the nature of thechoke point. Depending on the choke point, general elements of such a strategymay include:
+Each choke point's capture avoidance strategy is dependent on the nature of the choke point. Depending on the choke point, general elements of such a strategy may include:
 
 - the incorporation of legal entities representing each execution and oversight  function in a diversity of legal jurisdictions, to prevent capture by a single  government;
 - the selection of members of oversight bodies from diverse jurisdictions and affiliations, to prevent those capture by a small number of government(s)  and/or employer(s);
