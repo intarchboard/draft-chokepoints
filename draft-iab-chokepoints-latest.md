@@ -17,6 +17,10 @@ author:
     ins: M. Nottingham
     name: Mark Nottingham
     organization:
+    street: made in
+    city: Prahran
+    region: VIC
+    country: Australia
     email: mnot@mnot.net
     uri: https://www.mnot.net/
  -
@@ -72,34 +76,45 @@ This emergent property of the Internet has proven to be one of its core features
 At the same time, the Internet’s composition as a network of independent networks is valuable; imposing unnecessary constraints upon them is to be avoided. However, this does not mean that internet infrastructure providers are without guidance; in particular we note that the UN’s [Guiding Principles on Business and Human Rights](http://www.ohchr.org/Documents/Publications/GuidingPrinciplesBusinessHR_EN.pdf) is an already-existing framework for businesses (including Internet infrastructure providers) to make such decisions within while still respecting human rights -- including the right to Internet access.
 
 
-# Identifying Potential Choke Points
+# Current Internet Choke Points
 
 [EDITOR'S NOTE: IMO (brian) this is more useful if split by why the choke point emerges, not past/future. Not sure the list of subsections below is exhaustive.]
 
-## Access Infrastructure
+## Internet Access
 
 Some areas have regulated or de-facto monopolies on network access, whether at the physical, medium, or network layers. Connecting to the Internet in this case requires dealing with one and only one access provider, which forms a natural chokepoint. An actor in control of an access chokepoint can exercise nearly total control over the Internet traffic of those forced to use it.
 
 Avoiding access chokepoints is a key focus of the network neutrality debate, and regulations in some countries to prevent the formation of access monopolies.
 
-[EDITOR'S NOTE: citations would be nice here.]
+## Internet Transit
 
-## Protocol Bootstrapping
 
-[EDITOR'S NOTE: some chokepoints emerge because a protocol is designed to point to some piece of infrastructure to start itself up. Question: does the DoH case fit here?]
+## Routing
 
-- DNS root servers
-- others?
 
-## Roots of Trust
+## Naming
 
-[EDITOR'S NOTE: everything below needs citations.]
+
+
+## Trust
 
 A symmertric-key cryptographic protection of the security properties of protocols using requires a method to define and agree upon the roots of trust for the public-key infrastucture (PKI) associated with the protocol. Sometimes, there isa single global root, as in the case with the Root Key Signing Key (KSK) inDNSSEC. Sometimes, roots of trust are regionally distributed, as is the case with the routing public-key infrastructure (RPKI), with one root per Regional Internet Registry (RIR). Still other PKIs have arbitrarily many trust roots: in the case of the Web PKI, each Certificate Authority has its own root, individually trusted on a per-browser or per-platform basis.
 
 Each trust root is associated with a governance structure to ensure proper oversight over control of the root. For example, the DNSSEC root is administered according to ICANN's policy process, the RPKI by each RIR's policy process, and the Web PKI by the CA/Browser Forum.
 
 Creating a new PKI for a protocol unavoidably creates a new chokepoint for the protocol covered by the PKI, represented by the PKI's root, and requires the creation of a new governance  However, reusing an existing PKI for a new related protocol creates a dependency between policies covering the new protocol and those covering the existing protocol, which may or may not be appropriate.
+
+
+## Content Delivery
+
+
+## Service Infrastructure
+
+
+## Client Platforms
+
+
+
 
 # Techniques for Managing Potential Choke Points
 
