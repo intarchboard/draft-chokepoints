@@ -80,21 +80,64 @@ At the same time, the Internet’s composition as a network of independent netwo
 
 [EDITOR'S NOTE: IMO (brian) this is more useful if split by why the choke point emerges, not past/future. Not sure the list of subsections below is exhaustive.]
 
-## Internet Access
+## End User Internet Access
 
-Some areas have regulated or de-facto monopolies on network access, whether at the physical, medium, or network layers. Connecting to the Internet in this case requires dealing with one and only one access provider, which forms a natural chokepoint. An actor in control of an access chokepoint can exercise nearly total control over the Internet traffic of those forced to use it.
+There are now many ways for an end user to connect to the Internet. Mobile access over cellular radio (whether it be 2G, 3G, 4G or the emerging 5G) is extremely common worldwide, and fixed line access is available via multiple technologies -- twisted pair, coaxial cable, fibre -- in many places. Some networks also allow Internet access via point-to-point radio.
 
-Avoiding access chokepoints is a key focus of the network neutrality debate, and regulations in some countries to prevent the formation of access monopolies.
+Satellite Internet is widely deployed in remote areas, and a number of low earth orbit constellations promise to provide it more universally and at lower latency than previously experienced in this media.
+
+Despite this diversity of potential choices, obtaining access to the Internet remains a significant choke point.
+
+In some jurisdictions, legal controls (whether in primary legislation or regulation) limit the diversity of access available, forming a regulated or de facto monopoly on Internet access at the physical, medium, or network layers.
+
+An actor in control of an access chokepoint can exercise nearly total control over the Internet traffic of end users, and can also use it to gain bargaining power with Internet services that are not directly connected to the access network, because they effectively control some of that service's users.
+
+Avoiding access chokepoints is a key focus of the network neutrality debate, and regulations in some countries to prevent or control the formation of access monopolies.
+
+[Give examples -- e.g., US vs AU?]
+
 
 ## Internet Transit
+
+The Internet is often defined as a 'network of networks'; the access networks that end users use need to connect to other networks (of various kinds, including other access networks) to provide Internet access.
+
+backbones, tiers
+
+Pay for access
+
+Settlement
+
+Peering
 
 
 ## Routing
 
+Traffic between networks needs to be guided to its destination. In the Internet, this function is facilitated by routing protocols, most notably BGP.
+
+BGP works by allowing a network to announce the networks that it can provide access to, so that its peers can choose to route through it if they desire. As such, it is a decentralised protocol; there is no single 'source of truth' for Internet routing.
+
+However, while BGP cannot be used to control the entire Internet, it can be used to control some portion of it. By making false announcements, a network can deny access to or even re-route traffic of other networks illegitimately.
+
+[Examples]
+
+BGP security
+
 
 ## Naming
 
+Most Internet applications use the Domain Name System (DNS) as a naming service. This avoids the need for end users to remember numeric IP addresses, and provides a layer of abstraction that services use for load balancing, failover, and other valuable operational tasks.
 
+By their nature, domain names have a single source of truth; names are only useful if their ownership and control is universal and consistent -- making DNS a common Internet choke point.
+
+This manifests in a few different ways.
+
+The source of truth itself -- the system of authoritative servers -- is a potential and obvious choke point.
+
+Furthermore, DNS can be used as a control point on the path between users and the root server, in the resolvers that the end user requests transit through (e.g., the stub resolver on the system that they are using, or in recursive resolvers, whether explicitly configured or provided by network configuration).
+
+Additionally, DNS requests can be blocked or intercepted on the network.
+
+[examples]
 
 ## Trust
 
@@ -107,11 +150,26 @@ Creating a new PKI for a protocol unavoidably creates a new chokepoint for the p
 
 ## Content Delivery
 
+performance
+
+resilience
+
+
 
 ## Service Infrastructure
 
+cloud
+
+third-party services
+
 
 ## Client Platforms
+
+standards-defined platforms
+
+proprietary platforms
+
+stores and ecosystems
 
 
 
