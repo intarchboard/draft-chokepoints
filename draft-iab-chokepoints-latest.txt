@@ -66,12 +66,17 @@ Internet-Draft            Internet Choke Points           September 2020
 Table of Contents
 
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
-   2.  Choke Points on the Internet  . . . . . . . . . . . . . . . .   2
+   2.  Choke Points on the Internet  . . . . . . . . . . . . . . . .   3
      2.1.  More than Resilience  . . . . . . . . . . . . . . . . . .   3
-   3.  Identifying Potential Choke Points  . . . . . . . . . . . . .   4
-     3.1.  Access Infrastructure . . . . . . . . . . . . . . . . . .   4
-     3.2.  Protocol Bootstrapping  . . . . . . . . . . . . . . . . .   4
-     3.3.  Roots of Trust  . . . . . . . . . . . . . . . . . . . . .   4
+   3.  Current Internet Choke Points . . . . . . . . . . . . . . . .   4
+     3.1.  Internet Access . . . . . . . . . . . . . . . . . . . . .   4
+     3.2.  Internet Transit  . . . . . . . . . . . . . . . . . . . .   4
+     3.3.  Routing . . . . . . . . . . . . . . . . . . . . . . . . .   4
+     3.4.  Naming  . . . . . . . . . . . . . . . . . . . . . . . . .   4
+     3.5.  Trust . . . . . . . . . . . . . . . . . . . . . . . . . .   4
+     3.6.  Content Delivery  . . . . . . . . . . . . . . . . . . . .   5
+     3.7.  Service Infrastructure  . . . . . . . . . . . . . . . . .   5
+     3.8.  Client Platforms  . . . . . . . . . . . . . . . . . . . .   5
    4.  Techniques for Managing Potential Choke Points  . . . . . . .   5
      4.1.  Avoiding Choke Points . . . . . . . . . . . . . . . . . .   5
      4.2.  Balancing Interests . . . . . . . . . . . . . . . . . . .   5
@@ -96,6 +101,19 @@ Table of Contents
    preclude any one entity from having this power, through the careful
    management of "choke points" where such power could be exercised.
 
+
+
+
+
+
+
+
+
+Nottingham & Trammell     Expires 12 March 2021                 [Page 2]
+
+Internet-Draft            Internet Choke Points           September 2020
+
+
 2.  Choke Points on the Internet
 
    A large influence on the architecture of the Internet was a need to
@@ -105,14 +123,6 @@ Table of Contents
    overall.  This desire for resilience is reflected in the modern
    Internet through measures like the duplication of submarine internet
    links (https://submarine-cable-map-2018.telegeography.com).
-
-
-
-
-Nottingham & Trammell     Expires 12 March 2021                 [Page 2]
-
-Internet-Draft            Internet Choke Points           September 2020
-
 
    Although in some places Internet access is at risk - especially when
    there is not adequate diversity of access available - the Internet as
@@ -152,6 +162,14 @@ Internet-Draft            Internet Choke Points           September 2020
    appropriately administered allows this valuable architectural
    property to persist.
 
+
+
+
+Nottingham & Trammell     Expires 12 March 2021                 [Page 3]
+
+Internet-Draft            Internet Choke Points           September 2020
+
+
    This emergent property of the Internet has proven to be one of its
    core features.  By providing resilient communication, it also
    provides [EDITOR'S NOTE: missing sentence end]
@@ -162,26 +180,18 @@ Internet-Draft            Internet Choke Points           September 2020
    internet infrastructure providers are without guidance; in particular
    we note that the UN's Guiding Principles on Business and Human Rights
    (http://www.ohchr.org/Documents/Publications/
-
-
-
-Nottingham & Trammell     Expires 12 March 2021                 [Page 3]
-
-Internet-Draft            Internet Choke Points           September 2020
-
-
    GuidingPrinciplesBusinessHR_EN.pdf) is an already-existing framework
    for businesses (including Internet infrastructure providers) to make
    such decisions within while still respecting human rights - including
    the right to Internet access.
 
-3.  Identifying Potential Choke Points
+3.  Current Internet Choke Points
 
    [EDITOR'S NOTE: IMO (brian) this is more useful if split by why the
    choke point emerges, not past/future.  Not sure the list of
    subsections below is exhaustive.]
 
-3.1.  Access Infrastructure
+3.1.  Internet Access
 
    Some areas have regulated or de-facto monopolies on network access,
    whether at the physical, medium, or network layers.  Connecting to
@@ -194,30 +204,20 @@ Internet-Draft            Internet Choke Points           September 2020
    debate, and regulations in some countries to prevent the formation of
    access monopolies.
 
-   [EDITOR'S NOTE: citations would be nice here.]
+3.2.  Internet Transit
 
-3.2.  Protocol Bootstrapping
+3.3.  Routing
 
-   [EDITOR'S NOTE: some chokepoints emerge because a protocol is
-   designed to point to some piece of infrastructure to start itself up.
-   Question: does the DoH case fit here?]
+3.4.  Naming
 
-   *  DNS root servers
+3.5.  Trust
 
-   *  others?
-
-3.3.  Roots of Trust
-
-   [EDITOR'S NOTE: everything below needs citations.]
-
-
-
-
-
-
-
-
-
+   A symmertric-key cryptographic protection of the security properties
+   of protocols using requires a method to define and agree upon the
+   roots of trust for the public-key infrastucture (PKI) associated with
+   the protocol.  Sometimes, there isa single global root, as in the
+   case with the Root Key Signing Key (KSK) inDNSSEC.  Sometimes, roots
+   of trust are regionally distributed, as is the case with the routing
 
 
 
@@ -226,12 +226,6 @@ Nottingham & Trammell     Expires 12 March 2021                 [Page 4]
 Internet-Draft            Internet Choke Points           September 2020
 
 
-   A symmertric-key cryptographic protection of the security properties
-   of protocols using requires a method to define and agree upon the
-   roots of trust for the public-key infrastucture (PKI) associated with
-   the protocol.  Sometimes, there isa single global root, as in the
-   case with the Root Key Signing Key (KSK) inDNSSEC.  Sometimes, roots
-   of trust are regionally distributed, as is the case with the routing
    public-key infrastructure (RPKI), with one root per Regional Internet
    Registry (RIR).  Still other PKIs have arbitrarily many trust roots:
    in the case of the Web PKI, each Certificate Authority has its own
@@ -248,6 +242,12 @@ Internet-Draft            Internet Choke Points           September 2020
    reusing an existing PKI for a new related protocol creates a
    dependency between policies covering the new protocol and those
    covering the existing protocol, which may or may not be appropriate.
+
+3.6.  Content Delivery
+
+3.7.  Service Infrastructure
+
+3.8.  Client Platforms
 
 4.  Techniques for Managing Potential Choke Points
 
@@ -403,6 +403,9 @@ Internet-Draft            Internet Choke Points           September 2020
 Authors' Addresses
 
    Mark Nottingham
+   made in
+   Prahran VIC
+   Australia
 
    Email: mnot@mnot.net
    URI:   https://www.mnot.net/
@@ -412,9 +415,6 @@ Authors' Addresses
 
    Email: ietf@trammell.ch
    URI:   https://trammell.ch
-
-
-
 
 
 
