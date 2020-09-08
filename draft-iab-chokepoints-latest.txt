@@ -3,9 +3,9 @@
 
 
 IAB                                                        M. Nottingham
-Internet-Draft
+Internet-Draft                                                          
 Intended status: Informational                               B. Trammell
-Expires: May 8, 2019                                    November 4, 2018
+Expires: 12 March 2021                                  8 September 2020
 
 
                          Internet Choke Points
@@ -13,8 +13,16 @@ Expires: May 8, 2019                                    November 4, 2018
 
 Abstract
 
-   This memo discusses points of control on the Internet, or "choke
-   points", that may have architectural impact.
+   This memo discusses "choke points" in the Internet architecture and
+   the governance structures surrounding them.
+
+   A choke point occurs where one single entity or a small number of
+   entities have the ability to make decisions with wide-ranging or
+   global impact some aspect of the use of the Internet.
+
+   We explore the implications these choke points have on the health of
+   the Internet as a global communications infrastructure, and provide
+   guidance for avoiding the creation of future choke points.
 
 Status of This Memo
 
@@ -31,48 +39,51 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on May 8, 2019.
+   This Internet-Draft will expire on 12 March 2021.
 
 Copyright Notice
 
-   Copyright (c) 2018 IETF Trust and the persons identified as the
+   Copyright (c) 2020 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
-   Provisions Relating to IETF Documents
-   (https://trustee.ietf.org/license-info) in effect on the date of
-   publication of this document.  Please review these documents
-   carefully, as they describe your rights and restrictions with respect
-   to this document.  Code Components extracted from this document must
-   include Simplified BSD License text as described in Section 4.e of
-   the Trust Legal Provisions and are provided without warranty as
-   described in the Simplified BSD License.
+   Provisions Relating to IETF Documents (https://trustee.ietf.org/
+   license-info) in effect on the date of publication of this document.
+   Please review these documents carefully, as they describe your rights
 
 
 
-
-
-
-Nottingham & Trammell      Expires May 8, 2019                  [Page 1]
+Nottingham & Trammell     Expires 12 March 2021                 [Page 1]
 
-Internet-Draft            Internet Choke Points            November 2018
+Internet-Draft            Internet Choke Points           September 2020
 
+
+   and restrictions with respect to this document.  Code Components
+   extracted from this document must include Simplified BSD License text
+   as described in Section 4.e of the Trust Legal Provisions and are
+   provided without warranty as described in the Simplified BSD License.
 
 Table of Contents
 
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
    2.  Choke Points on the Internet  . . . . . . . . . . . . . . . .   2
      2.1.  More than Resilience  . . . . . . . . . . . . . . . . . .   3
-   3.  Identifying Potential Choke Points  . . . . . . . . . . . . .   3
-   4.  Techniques for Managing Potential Choke Points  . . . . . . .   4
-     4.1.  Avoiding Choke Points . . . . . . . . . . . . . . . . . .   4
-     4.2.  Balancing Interests . . . . . . . . . . . . . . . . . . .   4
-     4.3.  Multi-Stakeholder Administration  . . . . . . . . . . . .   4
-     4.4.  External Regulation . . . . . . . . . . . . . . . . . . .   5
-     5.1.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .   5
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   6
+   3.  Identifying Potential Choke Points  . . . . . . . . . . . . .   4
+     3.1.  Access Infrastructure . . . . . . . . . . . . . . . . . .   4
+     3.2.  Protocol Bootstrapping  . . . . . . . . . . . . . . . . .   4
+     3.3.  Roots of Trust  . . . . . . . . . . . . . . . . . . . . .   4
+   4.  Techniques for Managing Potential Choke Points  . . . . . . .   5
+     4.1.  Avoiding Choke Points . . . . . . . . . . . . . . . . . .   5
+     4.2.  Balancing Interests . . . . . . . . . . . . . . . . . . .   5
+     4.3.  Multi-Stakeholder Administration  . . . . . . . . . . . .   6
+     4.4.  Capture Avoidance . . . . . . . . . . . . . . . . . . . .   6
+     4.5.  External Regulation . . . . . . . . . . . . . . . . . . .   7
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   8
 
 1.  Introduction
+
+   [EDITOR'S NOTE: bring this up to date. keep the quote below but be a
+   bit more Ripped From Today's Headlines ]
 
    Recent events have caused concern about control of access to the
    Internet, leading one infrastructure company's CEO to reportedly
@@ -88,31 +99,33 @@ Table of Contents
 2.  Choke Points on the Internet
 
    A large influence on the architecture of the Internet was a need to
-   survive nuclear attack [1], so that loss of no one link or node would
-   preclude communication overall.  Although in some places Internet
-   access is at risk - especially when there is not adequate diversity
-   of access available - the Internet as a whole has proven resilient in
-   the face of such physical disruptions.
+   survive nuclear attack
+   (https://www.rand.org/content/dam/rand/pubs/papers/2008/P1995.pdf),
+   so that loss of no one link or node would preclude communication
+   overall.  This desire for resilience is reflected in the modern
+   Internet through measures like the duplication of submarine internet
+   links (https://submarine-cable-map-2018.telegeography.com).
 
-   This desire for resilience is reflected in the modern Internet
-   through measures like the duplication of submarine internet links
-   [2].
 
-   However, it is not limited to the physical components of the
+
+
+Nottingham & Trammell     Expires 12 March 2021                 [Page 2]
+
+Internet-Draft            Internet Choke Points           September 2020
+
+
+   Although in some places Internet access is at risk - especially when
+   there is not adequate diversity of access available - the Internet as
+   a whole has proven resilient in the face of such physical
+   disruptions.
+
+   However, its resilience not limited to the physical components of the
    Internet; it also extends to the various services that Internet
    access depends upon, and the protocols that it uses.  For example,
-   there are multiple DNS root servers [3], operated by a number of
-   parties.
-
-
-
-
-
-
-Nottingham & Trammell      Expires May 8, 2019                  [Page 2]
-
-Internet-Draft            Internet Choke Points            November 2018
-
+   there are multiple DNS root servers (http://root-servers.org/),
+   operated by a number of parties to provide protection from not only
+   physical disruption, but also political and other disruption caused
+   by such a vital service being controlled by one entity.
 
    When any one component - through its design or the constraints upon
    its use - has the ability to deny access to the Internet
@@ -141,23 +154,61 @@ Internet-Draft            Internet Choke Points            November 2018
 
    This emergent property of the Internet has proven to be one of its
    core features.  By providing resilient communication, it also
-   provides
+   provides [EDITOR'S NOTE: missing sentence end]
 
    At the same time, the Internet's composition as a network of
    independent networks is valuable; imposing unnecessary constraints
    upon them is to be avoided.  However, this does not mean that
    internet infrastructure providers are without guidance; in particular
    we note that the UN's Guiding Principles on Business and Human Rights
-   [4] is an already-existing framework for businesses (including
-   Internet infrastructure providers) to make such decisions within
-   while still respecting human rights - including the right to Internet
-   access.
+   (http://www.ohchr.org/Documents/Publications/
+
+
+
+Nottingham & Trammell     Expires 12 March 2021                 [Page 3]
+
+Internet-Draft            Internet Choke Points           September 2020
+
+
+   GuidingPrinciplesBusinessHR_EN.pdf) is an already-existing framework
+   for businesses (including Internet infrastructure providers) to make
+   such decisions within while still respecting human rights - including
+   the right to Internet access.
 
 3.  Identifying Potential Choke Points
 
-   new protocols and protocol extensions
+   [EDITOR'S NOTE: IMO (brian) this is more useful if split by why the
+   choke point emerges, not past/future.  Not sure the list of
+   subsections below is exhaustive.]
 
-   existing protocols
+3.1.  Access Infrastructure
+
+   Some areas have regulated or de-facto monopolies on network access,
+   whether at the physical, medium, or network layers.  Connecting to
+   the Internet in this case requires dealing with one and only one
+   access provider, which forms a natural chokepoint.  An actor in
+   control of an access chokepoint can exercise nearly total control
+   over the Internet traffic of those forced to use it.
+
+   Avoiding access chokepoints is a key focus of the network neutrality
+   debate, and regulations in some countries to prevent the formation of
+   access monopolies.
+
+   [EDITOR'S NOTE: citations would be nice here.]
+
+3.2.  Protocol Bootstrapping
+
+   [EDITOR'S NOTE: some chokepoints emerge because a protocol is
+   designed to point to some piece of infrastructure to start itself up.
+   Question: does the DoH case fit here?]
+
+   *  DNS root servers
+
+   *  others?
+
+3.3.  Roots of Trust
+
+   [EDITOR'S NOTE: everything below needs citations.]
 
 
 
@@ -165,10 +216,38 @@ Internet-Draft            Internet Choke Points            November 2018
 
 
 
-Nottingham & Trammell      Expires May 8, 2019                  [Page 3]
+
+
+
+
+
+Nottingham & Trammell     Expires 12 March 2021                 [Page 4]
 
-Internet-Draft            Internet Choke Points            November 2018
+Internet-Draft            Internet Choke Points           September 2020
 
+
+   A symmertric-key cryptographic protection of the security properties
+   of protocols using requires a method to define and agree upon the
+   roots of trust for the public-key infrastucture (PKI) associated with
+   the protocol.  Sometimes, there isa single global root, as in the
+   case with the Root Key Signing Key (KSK) inDNSSEC.  Sometimes, roots
+   of trust are regionally distributed, as is the case with the routing
+   public-key infrastructure (RPKI), with one root per Regional Internet
+   Registry (RIR).  Still other PKIs have arbitrarily many trust roots:
+   in the case of the Web PKI, each Certificate Authority has its own
+   root, individually trusted on a per-browser or per-platform basis.
+
+   Each trust root is associated with a governance structure to ensure
+   proper oversight over control of the root.  For example, the DNSSEC
+   root is administered according to ICANN's policy process, the RPKI by
+   each RIR's policy process, and the Web PKI by the CA/Browser Forum.
+
+   Creating a new PKI for a protocol unavoidably creates a new
+   chokepoint for the protocol covered by the PKI, represented by the
+   PKI's root, and requires the creation of a new governance However,
+   reusing an existing PKI for a new related protocol creates a
+   dependency between policies covering the new protocol and those
+   covering the existing protocol, which may or may not be appropriate.
 
 4.  Techniques for Managing Potential Choke Points
 
@@ -181,19 +260,27 @@ Internet-Draft            Internet Choke Points            November 2018
 
    A choke point can often be avoided through good protocol design.
 
-   o  distributed
+   *  distributed
 
-   o  avoid discriminators
+   *  avoid discriminators
 
-   o  avoid adding new roles
+   *  avoid adding new roles
 
 4.2.  Balancing Interests
 
-   o  create balanced markets
+   *  create balanced markets
 
-   o  standards
+   *  standards
 
-   o  federated systems
+   *  federated systems
+
+
+
+
+Nottingham & Trammell     Expires 12 March 2021                 [Page 5]
+
+Internet-Draft            Internet Choke Points           September 2020
+
 
    For example, Content Delivery Networks (CDNs) are sometimes viewed as
    another emerging choke point, because they are seen as essential in
@@ -208,7 +295,8 @@ Internet-Draft            Internet Choke Points            November 2018
    Another technique for mitigating an unavoidable choke point is
    through formal delegation of its administration to multiple parties
    with balanced interests, often referred to as the Multi-Stakeholder
-   Model [5].
+   Model (https://en.wikipedia.org/wiki/
+   Multistakeholder_governance_model).
 
    For example, in the case of domain names such oversight is performed
    by ICANN, a multi-stakeholder organisation.
@@ -217,20 +305,60 @@ Internet-Draft            Internet Choke Points            November 2018
    form another potential choke point, since they mediate how most
    people use the Internet.  For these, standardization is overseen by
    the World Wide Web consortium and the IETF, both of whom subscribe to
-   open standards principles [6].
-
-
-
-Nottingham & Trammell      Expires May 8, 2019                  [Page 4]
-
-Internet-Draft            Internet Choke Points            November 2018
-
+   open standards principles (https://open-stand.org/infographic-the-
+   benefits-of-open-standards/).
 
    Together, these architectural principles and corresponding practices
    assure that no one person, business or government can control the
    entire Internet.
 
-4.4.  External Regulation
+4.4.  Capture Avoidance
+
+   An architectural choke point in the Internet, even if well-protected
+   by a multi-stakeholder governance structure, represents an attractive
+   target to entities that would like to control or disrupt Internet
+   activity.  These governance structures should therefore be designed
+   to be resistent to capture by any one entity or set of entities
+   representing a single interest in how the choke point should be
+   administered.
+
+   Part of this is simply good governance design, ensuring that
+   oversight functions are sufficiently independent from administrative
+   functions in the operation of a choke point that capture of one does
+   not imply capture of the other.  This independence also allows for
+   plausible replaceablilty.  The threat that a captured execution
+   function, or a captured function at some point in the oversight
+   chain, could simply be replaced, increases the cost of successful
+   capture.
+
+
+
+Nottingham & Trammell     Expires 12 March 2021                 [Page 6]
+
+Internet-Draft            Internet Choke Points           September 2020
+
+
+   Each choke point's capture avoidance strategy is dependent on the
+   nature of the choke point.  Depending on the choke point, general
+   elements of such a strategy may include:
+
+   *  the incorporation of legal entities representing each execution
+      and oversight function in a diversity of legal jurisdictions, to
+      prevent capture by a single government;
+
+   *  the selection of members of oversight bodies from diverse
+      jurisdictions and affiliations, to prevent those capture by a
+      small number of government(s) and/or employer(s);
+
+   *  the arrangement of funding stream diversity for oversight and
+      execution functions, to prevent capture by a small number of
+      funders; and/or
+
+   *  the open publication of any software tooling and/or data necessary
+      to drive an execution function, to the extent possible, in order
+      to increase the plausibility of replacement.
+
+4.5.  External Regulation
 
    Another possible way to counter the ill effects of a choke point is
    through legal means, for example regulation.  While it may be
@@ -239,8 +367,9 @@ Internet-Draft            Internet Choke Points            November 2018
    carefully.
 
    For example, near-monopolies on "last-mile" Internet access in some
-   jurisdictions have led to concerns about network neutrality [7],
-   since they act as a choke point.
+   jurisdictions have led to concerns about network neutrality
+   (http://www.internetsociety.org/net-neutrality), since they act as a
+   choke point.
 
    Historically, the Internet has worked best as a network-of-networks,
    where each has administrative control to make decisions about local
@@ -255,39 +384,21 @@ Internet-Draft            Internet Choke Points            November 2018
    the risk of security vulnerabilities there, and can ultimately limit
    the scale of the Internet.
 
+
+
+
+
+
+Nottingham & Trammell     Expires 12 March 2021                 [Page 7]
+
+Internet-Draft            Internet Choke Points           September 2020
+
+
    Therefore, when there is risk of a choke point forming, we look for
    other mitigations before considering constraints on the behaviour of
    infrastructure providers.  This might take place through encouraging
    more diversity at the potential choke point, technical measures that
    counteract its formation, or other means.
-
-5.  References
-
-5.1.  URIs
-
-   [1] https://www.rand.org/content/dam/rand/pubs/papers/2008/P1995.pdf
-
-   [2] https://submarine-cable-map-2018.telegeography.com
-
-   [3] http://root-servers.org/
-
-   [4] http://www.ohchr.org/Documents/Publications/
-       GuidingPrinciplesBusinessHR_EN.pdf
-
-
-
-
-Nottingham & Trammell      Expires May 8, 2019                  [Page 5]
-
-Internet-Draft            Internet Choke Points            November 2018
-
-
-   [5] https://en.wikipedia.org/wiki/Multistakeholder_governance_model
-
-   [6] https://open-stand.org/infographic-the-benefits-of-open-
-       standards/
-
-   [7] http://www.internetsociety.org/net-neutrality
 
 Authors' Addresses
 
@@ -300,6 +411,7 @@ Authors' Addresses
    Brian Trammell
 
    Email: ietf@trammell.ch
+   URI:   https://trammell.ch
 
 
 
@@ -333,4 +445,4 @@ Authors' Addresses
 
 
 
-Nottingham & Trammell      Expires May 8, 2019                  [Page 6]
+Nottingham & Trammell     Expires 12 March 2021                 [Page 8]

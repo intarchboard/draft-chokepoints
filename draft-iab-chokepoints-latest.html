@@ -1,493 +1,1148 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
+<html lang="en" class="Internet-Draft">
+<head>
+<meta charset="utf-8">
+<meta content="Common,Latin" name="scripts">
+<meta content="initial-scale=1.0" name="viewport">
+<title>Internet Choke Points</title>
+<meta content="Mark Nottingham" name="author">
+<meta content="Brian Trammell" name="author">
+<meta content='
+       This memo discusses "choke points" in the Internet architecture and the governance structures surrounding them. 
+       A choke point occurs where one single entity or a small number of entities have the ability to make decisions with wide-ranging or global impact some aspect of the use of the Internet. 
+       We explore the implications these choke points have on the health of the Internet as a global communications infrastructure, and provide guidance for avoiding the creation of future choke points. 
+    ' name="description">
+<meta content="xml2rfc 2.47.0" name="generator">
+<meta content="Internet-Draft" name="keyword">
+<meta content="draft-iab-chokepoints-latest" name="ietf.draft">
+<link href="draft-iab-chokepoints-latest.xml" rel="alternate" type="application/rfc+xml">
+<link href="#copyright" rel="license">
+<style type="text/css">@import url('https://martinthomson.github.io/i-d-template/fonts.css');
 
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
-<head profile="http://www.w3.org/2006/03/hcard http://dublincore.org/documents/2008/08/04/dc-html/">
-  <meta http-equiv="Content-Type" content="text/html; charset=us-ascii" />
-
-  <title>Internet Choke Points</title>
-
-  
-<style type="text/css">/*<![CDATA[*/
-
+html {
+  --background-color: #fff;
+  --text-color: #222;
+  --title-color: #191919;
+  --link-color: #2a6496;
+  --highlight-color: #f9f9f9;
+  --line-color: #eee;
+  --small-font-size: 14.5px;
+}
 body {
-  font: 16px "Helvetica Neue","Open Sans",Helvetica,Calibri,sans-serif;
-  color: #333;
-  font-size-adjust: 0.5;
-  line-height: 24px;
+  max-width: 600px;
   margin: 75px auto;
-  max-width: 624px;
   padding: 0 5px;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  font: 16px/22px "Lora", serif;
+  scroll-behavior: smooth;
 }
 
-.title, .filename, h1, h2, h3, h4, h5 {
-  font: 16px "Roboto Condensed","Helvetica Neue","Open Sans",Helvetica,Calibri,sans-serif;
-  font-size-adjust: 0.5;
-  font-weight: bold;
-  color: #333;
-  line-height: 100%;
-  margin: 1.2em 0 0.3em;
-}
-.title, #rfc\.title h1 { font-size: 32px; }
-h1, section h1, h2, section h2, section h3, nav h2 { font-size: 20px; }
-h3, section h4, h4, section h5 { font-size: 16px; }
-h1 a[href], h2 a[href], h3 a[href], h4 a[href] {
-  color: #333;
-}
-
-table {
-  margin-left: 0em;
-  border-collapse: collapse;
-}
-th {
-  text-align: left;
-  border-bottom: 2px solid #ddd;
-}
-td {
-  border-top: 1px solid #ddd;
-  vertical-align: top;
-}
-tr:nth-child(2n+1) > td,
-tr:nth-child(2n+1) > th {
-  background-color: #f9f9f9;
-}
-td.reference {
-  max-width: 200px;
-  border-top: none;
-  padding-right: 1em;
-}
-.right {
-  text-align: right;
-}
-
-
-table.header, table#rfc\.headerblock {
-  width: 100%;
-}
-table.header td, table#rfc\.headerblock td {
-  border: none;
-  background-color: transparent;
-  color: black;
-  padding: 0;
-}
-.filename {
-  display: block;
-  color: rgb(119, 119, 119);
-  font-size: 20px;
-  font-weight: normal;
-  line-height: 100%;
-  margin: 10px 0 32px;
-}
-#rfc\.abstract+p, #rfc\.abstract p {
-  font-size: 20px;
-  line-height: 28px;
-}
-
-samp, tt, code, pre {
-  font: 13.5px Consolas, monospace;
-  font-size-adjust: none;
-}
-pre {
-  background-color: #eee;
-  border: 1px solid #ddd;
-  overflow-x: auto;
-  padding: 5px;
-  margin: 5px;
-}
-.figure, caption {
-  font-style: italic;
-  margin: 0 1.5em;
-  text-align: left;
-}
-
-address {
-  margin: 16px 2px;
-  line-height: 20px;
-}
-.vcard {
-  font-style: normal;
-}
-.vcardline {
-  display: block;
-}
-.vcardline .fn, address b {
-  font-weight: normal;
-}
-.vcardline .hidden {
+.ears {
   display: none;
 }
 
-dl {
+/* headings */
+#title, h1, h2, h3, h4, h5, h6 {
+  font-family: "Cabin Condensed", sans-serif;
+  font-weight: 600;
+  margin: 0.8em 0 0.3em;
+  font-size-adjust: 0.5;
+  color: var(--title-color);
+}
+#title {
+  padding: 1em 0 0.2em;
+  font-size: 32px;
+  line-height: 40px;
+  clear: both;
+}
+h1, h2, h3 {
+  font-size: 22px;
+  line-height: 26px;
+}
+h4, h5, h6 {
+  font-size: 18px;
+  line-height: 22px;
+}
+
+/* general structure */
+.author {
+  padding-bottom: 0.3em;
+}
+#abstract+p, #abstract+p code, #abstract+p samp, #abstract+p tt {
+  font-size: 18px;
+  line-height: 24px;
+}
+p {
+  padding: 0;
+  margin: 0.5em 0;
+  text-align: left;
+}
+div {
+  margin: 0;
+}
+.alignRight.art-text {
+  background-color: var(--highlight-color);
+  border: 1px solid var(--line-color);
+  border-radius: 3px;
+  padding: 0.5em 1em 0;
+  margin-bottom: 0.5em;
+}
+.alignRight.art-text pre {
+  padding: 0;
+  width: auto;
+}
+.alignRight {
+  margin: 1em 0;
+}
+.alignRight > *:first-child {
+  border: none;
+  margin: 0;
+  float: right;
+  clear: both;
+}
+.alignRight > *:nth-child(2) {
+  clear: both;
+  display: block;
+  border: none;
+}
+svg {
+  display: block;
+}
+.alignCenter.art-text {
+  background-color: var(--highlight-color);
+  border: 1px solid var(--line-color);
+  border-radius: 3px;
+  padding: 0.5em 1em 0;
+  margin-bottom: 0.5em;
+}
+.alignCenter.art-text pre {
+  padding: 0;
+  width: auto;
+}
+.alignCenter {
+  margin: 1em 0;
+}
+.alignCenter > *:first-child {
+  border: none;
+  /* this isn't optimal, but it's an existence proof.  PrinceXML doesn't
+     support flexbox yet.
+  */
+  display: table;
+  margin: 0 auto;
+}
+
+/* lists */
+ol, ul {
+  padding: 0;
+  margin: 0 0 1em 2em;
+}
+ol ol, ul ul, ol ul, ul ol {
   margin-left: 1em;
 }
-dl.dl-horizontal: {
-  margin-left: 0;
+li {
+  margin: 0 0 0.25em 0;
+}
+.ulCompact li {
+  margin: 0;
+}
+ul.empty, .ulEmpty {
+  list-style-type: none;
+}
+ul.empty li, .ulEmpty li {
+  margin-top: 0.5em;
+}
+ul.compact, .ulCompact,
+ol.compact, .olCompact {
+  line-height: 100%;
+  margin: 0 0 0 2em;
+}
+
+/* definition lists */
+dl {
 }
 dl > dt {
   float: left;
   margin-right: 1em;
 }
-dl.nohang > dt {
-  float: none;
-}
 dl > dd {
-  margin-bottom: .5em;
+  margin-bottom: .8em;
+  min-height: 1.3em;
 }
-dl.compact > dd {
+dl.compact > dd, .dlCompact > dd {
   margin-bottom: 0em;
 }
 dl > dd > dl {
   margin-top: 0.5em;
   margin-bottom: 0em;
 }
-ul.empty {
-  list-style-type: none;
-}
-ul.empty li {
-  margin-top: .5em;
-}
-
-hr {
-  border: 0;
-  border-top: 1px solid #eee;
-}
-hr.noprint {
+dd.break {
   display: none;
 }
 
-a {
+/* links */
+a, a[href].selfRef:hover {
   text-decoration: none;
 }
+a[href].selfRef {
+  color: var(--text-color);
+}
 a[href] {
-  color: #2a6496;
+  color: var(--link-color);
 }
 a[href]:hover {
-  background-color: #eee;
+  text-decoration: underline;
+}
+a[href].selfRef:hover {
+  background-color: var(--highlight-color);
+}
+a.xref {
+  white-space: nowrap;
 }
 
-p, ol, ul, li {
-  padding: 0;
+/* Figures */
+tt, code, pre {
+  background-color: var(--highlight-color);
+  font: 14px/22px 'Oxygen Mono', monospace;
 }
-p {
+pre {
+  border: 1px solid var(--line-color);
+  font-size: 13.5px;
+  line-height: 16px;
+  letter-spacing: -0.2px;
+  margin: 5px;
+  padding: 5px;
+}
+img {
+  max-width: 100%;
+}
+figure {
   margin: 0.5em 0;
 }
-ol, ul {
-  margin: 0.2em 0 0.2em 2em;
+figure blockquote {
+  margin: 0.8em 0.4em 0.4em;
 }
-li {
-  margin: 0.2em 0;
+figcaption, caption {
+  font-style: italic;
+  margin: 0.5em 1.5em;
+  text-align: left;
 }
-address {
-  font-style: normal;
+@media screen {
+  pre {
+    display: inline-block;
+    overflow-x: auto;
+    max-width: 100%;
+    width: calc(100% - 22px - 1em);
+  }
+  figure pre {
+    display: block;
+    width: calc(100% - 25px);
+  }
+  pre + .pilcrow {
+    display: inline-block;
+    vertical-align: text-bottom;
+    padding-bottom: 8px;
+  }
+  table {
+    display: inline-block;
+    overflow-x: auto;
+  }
 }
 
-ul.toc ul {
-  margin: 0 0 0 2em;
+/* aside, blockquote */
+aside, blockquote {
+  margin-left: 0;
+  padding: 0 2em;
+  font-style: italic;
 }
-ul.toc li {
-  list-style: none;
+blockquote {
+  background-color: var(--highlight-color);
+  border: 1px solid var(--line-color);
+  border-radius: 3px;
+  margin: 1em 0;
+}
+cite {
+  display: block;
+  text-align: right;
+  font-style: italic;
+}
+
+/* tables */
+table {
+  max-width: 100%;
+  margin: 0 0 1em;
+  border-collapse: collapse;
+}
+table.right {
+  margin-left: auto;
+}
+table.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+table.left {
+  margin-right: auto;
+}
+thead, tbody {
+  border: 1px solid var(--line-color);
+}
+th, td {
+  text-align: left;
+  vertical-align: top;
+  padding: 5px 10px;
+}
+th {
+  background-color: var(--line-color);
+}
+tr:nth-child(2n) > td {
+  background-color: var(--background-color);
+}
+tr:nth-child(2n+1) > td {
+  background-color: var(--highlight-color);
+}
+thead+tbody > tr:nth-child(2n) > td {
+  background-color: var(--highlight-color);
+}
+thead+tbody > tr:nth-child(2n+1) > td {
+  background-color: var(--background-color);
+}
+table caption {
+  margin: 0;
+  padding: 3px 1em;
+}
+table p {
   margin: 0;
 }
 
-@media screen and (min-width: 924px) {
-  body {
-    padding-right: 350px;
+/* pilcrow */
+a.pilcrow {
+  margin-left: 3px;
+  visibility: hidden;
+  user-select: none;
+}
+a.pilcrow[href] { color: #ddd; }
+a.pilcrow[href]:hover { text-decoration: none; }
+@media screen {
+  :hover > a.pilcrow {
+    visibility: visible;
   }
-  body>ul.toc, body>#rfc\.toc {
+  a.pilcrow:hover {
+    background-color: transparent;
+  }
+}
+
+/* misc */
+hr {
+  border: 0;
+  border-top: 1px solid var(--line-color);
+}
+.bcp14 {
+  font-variant: small-caps;
+}
+
+.role {
+  font-variant: all-small-caps;
+}
+
+/* info block */
+#identifiers {
+  margin: 0;
+  font-size: var(--small-font-size);
+  line-height: 18px;
+  --identifier-width: 8em;
+}
+#identifiers dt {
+  width: var(--identifier-width);
+  margin: 0;
+  clear: left;
+  float: left;
+  text-align: right;
+}
+#identifiers dd {
+  margin: 0 0 0 calc(1em + var(--identifier-width));
+  min-width: 5em;
+}
+#identifiers .authors .author {
+  display: inline-block;
+  margin-right: 1.5em;
+}
+#identifiers .authors .org {
+  font-style: italic;
+}
+
+/* The prepared/rendered info at the very bottom of the page */
+.docInfo {
+  color: #999;
+  font-size: 0.9em;
+  font-style: italic;
+  margin-top: 2em;
+}
+.docInfo .prepared {
+  float: left;
+}
+.docInfo .prepared {
+  float: right;
+}
+
+/* table of contents */
+#toc {
+  padding: 0.75em 0 2em 0;
+  margin-bottom: 1em;
+}
+#toc nav ul {
+  margin: 0 0.5em 0 0;
+  padding: 0;
+  list-style: none;
+}
+#toc nav li {
+  line-height: 1.3em;
+  margin: 0.75em 0;
+  padding-left: 1.2em;
+  text-indent: -1.2em;
+}
+#toc a.xref {
+  white-space: normal;
+}
+/* references */
+.references dt {
+  text-align: right;
+  font-weight: bold;
+  min-width: 7em;
+}
+.references dd {
+  margin-left: 8em;
+  overflow: auto;
+}
+
+.refInstance {
+  margin-bottom: 1.25em;
+}
+
+.references .ascii {
+  margin-bottom: 0.25em;
+}
+
+/* index */
+.index ul {
+  margin: 0 0 0 1em;
+  padding: 0;
+  list-style: none;
+}
+.index ul ul {
+  margin: 0;
+}
+.index li {
+  margin: 0;
+  text-indent: -2em;
+  padding-left: 2em;
+  padding-bottom: 5px;
+}
+.indexIndex {
+  margin: 0.5em 0 1em;
+}
+.index a {
+  font-weight: 700;
+}
+/* make the index two-column on all but the smallest screens */
+@media (min-width: 500px) {
+  .index ul {
+    column-count: 2;
+    column-gap: 20px;
+  }
+  .index ul ul {
+    column-count: 1;
+    column-gap: 0;
+  }
+}
+
+/* authors */
+address.vcard {
+  font-style: normal;
+  margin: 1em 0;
+}
+address.vcard .nameRole {
+  font-weight: 700;
+  margin-left: 0;
+}
+address.vcard .label {
+  margin: 0.5em 0;
+}
+address.vcard .type {
+  display: none;
+}
+.alternative-contact {
+  margin: 1.5em 0 1em;
+}
+hr.addr {
+  border-top: 1px dashed;
+  margin: 0;
+  color: #ddd;
+  max-width: calc(100% - 16px);
+}
+@media (min-width: 500px) {
+  #authors-addresses > section {
+    column-count: 2;
+    column-gap: 20px;
+  }
+  #authors-addresses > section > h2 {
+    column-span: all;
+  }
+  /* hack for break-inside: avoid-column */
+  #authors-addresses address {
+    display: inline-block;
+    break-inside: avoid-column;
+  }
+}
+
+.rfcEditorRemove p:first-of-type {
+  font-style: italic;
+}
+.cref {
+  background-color: rgba(249, 232, 105, 0.3);
+  padding: 2px 4px;
+}
+.crefSource {
+  font-style: italic;
+}
+/* alternative layout for smaller screens */
+@media screen and (max-width: 929px) {
+  #toc {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    padding: 0;
+    margin: 0;
+    border-bottom: 1px solid #ccc;
+    opacity: 0.6;
+  }
+  #toc.active {
+      opacity: 1;
+  }
+  #toc h2 {
+    margin: 0;
+    padding: 2px 0 2px 6px;
+    padding-right: 1em;
+    font-size: 18px;
+    line-height: 24px;
+    min-width: 190px;
+    text-align: right;
+    background-color: #444;
+    color: white;
+    cursor: pointer;
+  }
+  #toc h2::before { /* css hamburger */
+    float: right;
+    position: relative;
+    width: 1em;
+    height: 1px;
+    left: -164px;
+    margin: 8px 0 0 0;
+    background: white none repeat scroll 0 0;
+    box-shadow: 0 4px 0 0 white, 0 8px 0 0 white;
+    content: "";
+  }
+  #toc nav {
+    display: none;
+    background-color: var(--background-color);
+    padding: 0.5em 1em 1em;
+    overflow: auto;
+    overscroll-behavior: contain;
+    height: calc(100vh - 48px);
+    border-left: 1px solid #ddd;
+  }
+  #toc.active nav {
+    display: block;
+  }
+  /* Make the collapsed ToC header render white on gray also when it's a link */
+  #toc h2 a,
+  #toc h2 a:link,
+  #toc h2 a:focus,
+  #toc h2 a:hover,
+  #toc a.toplink,
+  #toc a.toplink:hover {
+    color: white;
+    background-color: #444;
+    text-decoration: none;
+  }
+  #toc a.toplink {
+    margin-top: 2px;
+  }
+}
+
+/* alternative layout for wide screens */
+@media screen and (min-width: 930px) {
+  body {
+    padding-right: 360px;
+    padding-right: calc(min(180px + 20%, 500px));
+  }
+  #toc {
     position: fixed;
     bottom: 0;
     right: 0;
-    right: calc(50vw - 500px);
-    width: 300px;
+    right: calc(50vw - 480px);
+    width: 312px;
+    margin: 0;
+    padding: 0;
     z-index: 1;
+  }
+  #toc h2 {
+    margin: 0;
+    padding: 0.25em 1em 1em 0;
+  }
+  #toc nav {
+    display: block;
+    height: calc(90vh - 84px);
+    bottom: 0;
+    padding: 0.5em 0 2em;
     overflow: auto;
     overscroll-behavior: contain;
+    scrollbar-width: thin;
   }
-  body>#rfc\.toc {
-    top: 55px;
+  #toc nav > ul  {
+    margin-bottom: 2em;
   }
-  body>ul.toc {
-    top: 100px;
-  }
-
-  ul.toc {
+  #toc ul {
     margin: 0 0 0 4px;
-    font-size: 12px;
-    line-height: 20px;
+    font-size: var(--small-font-size);
   }
-  ul.toc ul {
-    margin-left: 1.2em;
+  #toc ul p, #toc ul li {
+    margin: 2px 0;
+    line-height: 22px;
+  }
+  img { /* future proofing */
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* pagination */
+@media print {
+  body {
+    width: 100%;
+  }
+  p {
+    orphans: 3;
+    widows: 3;
+  }
+  #n-copyright-notice {
+    border-bottom: none;
+  }
+  #toc, #n-introduction {
+    page-break-before: always;
+  }
+  #toc {
+    border-top: none;
+    padding-top: 0;
+  }
+  figure, pre {
+    page-break-inside: avoid;
+  }
+  figure {
+    overflow: scroll;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+  }
+  h2+*, h3+*, h4+*, h5+*, h6+* {
+    page-break-before: avoid;
+  }
+  pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 10pt;
+  }
+  table {
+    border: 1px solid #ddd;
+  }
+  td {
+    border-top: 1px solid #ddd;
   }
 }
 
-.github-fork-ribbon-wrapper {
-  display: none;
-}
-@media screen and (min-width: 800px) {
-  /* "Fork me on GitHub" CSS ribbon based on
-   * https://github.com/simonwhitaker/github-fork-ribbon-css
-   */
-  .github-fork-ribbon {
-    position: absolute;
-    padding: 2px 0;
-    background-color: #a00;
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
-    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.5);
-    font: 700 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
-
-    pointer-events: auto;
-
-    top: 38px;
-    right: -45px;
-
-    transform: rotate(45deg);
+@page :first {
+  padding-top: 0;
+  @top-left {
+    content: normal;
+    border: none;
   }
-
-  .github-fork-ribbon a[href],
-  .github-fork-ribbon a[href]:hover {
-    color: #fff;
-    background-color: transparent;
-    text-decoration: none;
-    text-shadow: 0 -1px rgba(0, 0, 0, 0.5);
-    text-align: center;
-
-    width: 190px;
-    line-height: 18px;
-
-    display: inline-block;
-    padding: 2px 0;
-
-    border: 1.5px dotted #fff;
-    border-color: rgba(255, 255, 255, 0.6);
+  @top-center {
+    content: normal;
+    border: none;
   }
-
-  .github-fork-ribbon-wrapper {
-    display: block;
-    width: 130px;
-    height: 130px;
-    position: absolute;
-    overflow: hidden;
-    top: 0; right: 0;
-    z-index: 2;
-    pointer-events: none;
+  @top-right {
+    content: normal;
+    border: none;
   }
 }
-@media screen and (min-width: 1000px) {
-  .github-fork-ribbon-wrapper {
-    position: fixed;
+
+@page {
+  size: A4;
+  margin-bottom: 45mm;
+  padding-top: 20px;
+}
+
+/* Changes introduced to fix issues found during implementation */
+
+/* Separate body from document info even without intervening H1 */
+section {
+  clear: both;
+}
+
+/* Top align author divs, to avoid names without organization dropping level with org names */
+.author {
+  vertical-align: top;
+}
+
+/* Style section numbers with more space between number and title */
+.section-number {
+  padding-right: 0.5em;
+}
+
+/* Add styling for a link in the ToC that points to the top of the document */
+a.toplink {
+  float: right;
+  margin: 8px 0.5em 0;
+}
+
+/* Fix the dl styling to match the RFC 7992 attributes */
+dl > dt,
+dl.dlParallel > dt {
+  float: left;
+  margin-right: 1em;
+}
+dl.dlNewline > dt {
+  float: none;
+}
+
+/* Provide styling for table cell text alignment */
+table .text-left, table .text-left {
+  text-align: left;
+}
+table .text-center, table .text-center {
+  text-align: center;
+}
+table .text-right, table .text-right {
+  text-align: right;
+}
+
+/* Make the alternative author contact information look less like just another
+   author, and group it closer with the primary author contact information */
+.alternative-contact {
+  margin: 0.5em 0 0.25em 0;
+}
+address .non-ascii {
+  margin: 0 0 0 2em;
+}
+
+/* With it being possible to set tables with alignment
+  left, center, and right, { width: 100%; } does not make sense */
+table {
+  width: auto;
+}
+
+/* Avoid reference text that sits in a block with very wide left margin,
+   because of a long floating dt label.*/
+.references dd {
+  overflow: visible;
+}
+
+/* Control caption placement */
+caption {
+  caption-side: bottom;
+}
+
+/* Limit the width of the author address vcard, so names in right-to-left
+   script don't end up on the other side of the page. */
+
+address.vcard {
+  max-width: 20em;
+  margin-right: auto;
+}
+
+/* For address alignment dependent on LTR or RTL scripts */
+address div.left {
+  text-align: left;
+}
+address div.right {
+  text-align: right;
+}
+
+/* Give the table caption label the same styling as the figcaption */
+
+@media print {
+  .toplink {
+    display: none;
   }
-/*]]>*/</style>
-<meta name="viewport" content="initial-scale=1.0">
 
+  /* avoid overwriting the top border line with the ToC header */
+  #toc {
+    padding-top: 1px;
+  }
 
-  <link href="#rfc.toc" rel="Contents">
-<link href="#rfc.section.1" rel="Chapter" title="1 Introduction">
-<link href="#rfc.section.2" rel="Chapter" title="2 Choke Points on the Internet">
-<link href="#rfc.section.2.1" rel="Chapter" title="2.1 More than Resilience">
-<link href="#rfc.section.3" rel="Chapter" title="3 Identifying Potential Choke Points">
-<link href="#rfc.section.4" rel="Chapter" title="4 Techniques for Managing Potential Choke Points">
-<link href="#rfc.section.4.1" rel="Chapter" title="4.1 Avoiding Choke Points">
-<link href="#rfc.section.4.2" rel="Chapter" title="4.2 Balancing Interests">
-<link href="#rfc.section.4.3" rel="Chapter" title="4.3 Multi-Stakeholder Administration">
-<link href="#rfc.section.4.4" rel="Chapter" title="4.4 External Regulation">
-<link href="#rfc.authors" rel="Chapter">
+  /* Avoid page breaks inside dl and author address entries */
+  dd {
+    page-break-before: avoid;
+  }
+  .vcard {
+    page-break-inside: avoid;
+  }
 
-
-  <meta name="generator" content="xml2rfc version 2.10.0 - https://tools.ietf.org/tools/xml2rfc" />
-  <link rel="schema.dct" href="http://purl.org/dc/terms/" />
-
-  <meta name="dct.creator" content="Nottingham, M. and B. Trammell" />
-  <meta name="dct.identifier" content="urn:ietf:id:draft-iab-chokepoints-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2018-04" />
-  <meta name="dct.abstract" content="This memo discusses points of control on the Internet, or &#8220;choke points&#8221;, that may have architectural impact." />
-  <meta name="description" content="This memo discusses points of control on the Internet, or &#8220;choke points&#8221;, that may have architectural impact." />
-
+}
+/* Tweak the bcp14 keyword presentation */
+.bcp14 {
+  font-variant: small-caps;
+  font-weight: bold;
+  font-size: 0.9em;
+}
+</style>
+<link href="rfc-local.css" rel="stylesheet" type="text/css">
 </head>
-
 <body>
-
-  <table class="header">
-    <tbody>
-    
-    	<tr>
-<td class="left">IAB</td>
-<td class="right">M. Nottingham</td>
-</tr>
-<tr>
+<table class="ears">
+<thead><tr>
 <td class="left">Internet-Draft</td>
-<td class="right"></td>
-</tr>
-<tr>
-<td class="left">Intended status: Informational</td>
-<td class="right">B. Trammell</td>
-</tr>
-<tr>
-<td class="left">Expires: May 8, 2019</td>
-<td class="right">November 4, 2018</td>
-</tr>
-
-    	
-    </tbody>
-  </table>
-
-  <p class="title">Internet Choke Points<br />
-  <span class="filename">draft-iab-chokepoints-latest</span></p>
-  
-  <h1 id="rfc.abstract"><a href="#rfc.abstract">Abstract</a></h1>
-<p>This memo discusses points of control on the Internet, or &#8220;choke points&#8221;, that may have architectural impact.</p>
-<h1 id="rfc.status"><a href="#rfc.status">Status of This Memo</a></h1>
-<p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
-<p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
-<p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on May 8, 2019.</p>
-<h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
-<p>Copyright (c) 2018 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
-<p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
-
-  
-  <hr class="noprint" />
-  <h1 class="np" id="rfc.toc"><a href="#rfc.toc">Table of Contents</a></h1>
-  <ul class="toc">
-
-  	<li>1.   <a href="#rfc.section.1">Introduction</a>
-</li>
-<li>2.   <a href="#rfc.section.2">Choke Points on the Internet</a>
-</li>
-<ul><li>2.1.   <a href="#rfc.section.2.1">More than Resilience</a>
-</li>
-</ul><li>3.   <a href="#rfc.section.3">Identifying Potential Choke Points</a>
-</li>
-<li>4.   <a href="#rfc.section.4">Techniques for Managing Potential Choke Points</a>
-</li>
-<ul><li>4.1.   <a href="#rfc.section.4.1">Avoiding Choke Points</a>
-</li>
-<li>4.2.   <a href="#rfc.section.4.2">Balancing Interests</a>
-</li>
-<li>4.3.   <a href="#rfc.section.4.3">Multi-Stakeholder Administration</a>
-</li>
-<li>4.4.   <a href="#rfc.section.4.4">External Regulation</a>
-</li>
-</ul><li><a href="#rfc.authors">Authors' Addresses</a>
-</li>
-
-
-  </ul>
-
-  <h1 id="rfc.section.1">
-<a href="#rfc.section.1">1.</a> <a href="#introduction" id="introduction">Introduction</a>
-</h1>
-<p id="rfc.section.1.p.1">Recent events have caused concern about control of access to the Internet, leading one infrastructure company&#8217;s CEO to reportedly assert:</p>
-<p></p>
-
-<ul class="empty"><li>Literally, I woke up in a bad mood and decided someone shouldn&#8217;t be allowed on the Internet. No one should have that power.</li></ul>
-<p id="rfc.section.1.p.3">In fact, the Internet is both architected and administered to preclude any one entity from having this power, through the careful management of &#8220;choke points&#8221; where such power could be exercised.</p>
-<h1 id="rfc.section.2">
-<a href="#rfc.section.2">2.</a> <a href="#choke-points-on-the-internet" id="choke-points-on-the-internet">Choke Points on the Internet</a>
-</h1>
-<p id="rfc.section.2.p.1">A large influence on the architecture of the Internet was <a href="https://www.rand.org/content/dam/rand/pubs/papers/2008/P1995.pdf">a need to survive nuclear attack</a>, so that loss of no one link or node would preclude communication overall. Although in some places Internet access is at risk &#8211; especially when there is not adequate diversity of access available &#8211; the Internet as a whole has proven resilient in the face of such physical disruptions.</p>
-<p id="rfc.section.2.p.2">This desire for resilience is reflected in the modern Internet through measures like the <a href="https://submarine-cable-map-2018.telegeography.com">duplication of submarine internet links</a>.</p>
-<p id="rfc.section.2.p.3">However, it is not limited to the physical components of the Internet; it also extends to the various services that Internet access depends upon, and the protocols that it uses. For example, there are <a href="http://root-servers.org/">multiple DNS root servers</a>, operated by a number of parties.</p>
-<p id="rfc.section.2.p.4">When any one component &#8211; through its design or the constraints upon its use &#8211; has the ability to deny access to the Internet (accidentally or not) or control its use, we call this a choke point.</p>
-<p id="rfc.section.2.p.5">Avoiding choke points is both a design goal for both the protocols and the services that make network access and operations possible, as well as an assumption made by each layer and service about its dependencies. The resilience and long-term health of the Internet depends on this assumption.</p>
-<p id="rfc.section.2.p.6">This does not mean that we can prevent all possible choke points; if a node has only one connection to the Internet, that link will be able to deny access no matter what measures we take. Instead, our aim is to avoid unnecessary choke points, especially when they can influence large portions of the Internet.</p>
-<h1 id="rfc.section.2.1">
-<a href="#rfc.section.2.1">2.1.</a> <a href="#more-than-resilience" id="more-than-resilience">More than Resilience</a>
-</h1>
-<p id="rfc.section.2.1.p.1">As John Gilmore said, &#8220;the internet interprets censorship as damage and routes around it.&#8221; Censorship and other forms of control relies on having an opportunity to exercise that control. Limiting the number of choke points and assuring that any unavoidable points are appropriately administered allows this valuable architectural property to persist.</p>
-<p id="rfc.section.2.1.p.2">This emergent property of the Internet has proven to be one of its core features. By providing resilient communication, it also provides</p>
-<p id="rfc.section.2.1.p.3">At the same time, the Internet&#8217;s composition as a network of independent networks is valuable; imposing unnecessary constraints upon them is to be avoided. However, this does not mean that internet infrastructure providers are without guidance; in particular we note that the UN&#8217;s <a href="http://www.ohchr.org/Documents/Publications/GuidingPrinciplesBusinessHR_EN.pdf">Guiding Principles on Business and Human Rights</a> is an already-existing framework for businesses (including Internet infrastructure providers) to make such decisions within while still respecting human rights &#8211; including the right to Internet access.</p>
-<h1 id="rfc.section.3">
-<a href="#rfc.section.3">3.</a> <a href="#identifying-potential-choke-points" id="identifying-potential-choke-points">Identifying Potential Choke Points</a>
-</h1>
-<p id="rfc.section.3.p.1">new protocols and protocol extensions</p>
-<p id="rfc.section.3.p.2">existing protocols</p>
-<h1 id="rfc.section.4">
-<a href="#rfc.section.4">4.</a> <a href="#techniques-for-managing-potential-choke-points" id="techniques-for-managing-potential-choke-points">Techniques for Managing Potential Choke Points</a>
-</h1>
-<p id="rfc.section.4.p.1">There are some cases when there is an unavoidable choke point. For example, as the source of truth regarding naming, administration of domain names is currently a necessary choke point in the Internet architecture.</p>
-<h1 id="rfc.section.4.1">
-<a href="#rfc.section.4.1">4.1.</a> <a href="#avoiding-choke-points" id="avoiding-choke-points">Avoiding Choke Points</a>
-</h1>
-<p id="rfc.section.4.1.p.1">A choke point can often be avoided through good protocol design.</p>
-<p></p>
-
-<ul>
-<li>distributed</li>
-<li>avoid discriminators</li>
-<li>avoid adding new roles</li>
-</ul>
-<h1 id="rfc.section.4.2">
-<a href="#rfc.section.4.2">4.2.</a> <a href="#balancing-interests" id="balancing-interests">Balancing Interests</a>
-</h1>
-<p></p>
-
-<ul>
-<li>create balanced markets</li>
-<li>standards</li>
-<li>federated systems</li>
-</ul>
-<p id="rfc.section.4.2.p.2">For example, Content Delivery Networks (CDNs) are sometimes viewed as another emerging choke point, because they are seen as essential in mitigating Distributed Denial-of-Service (DDoS) attacks. While there appears to be a healthy market of CDNs (and similar services) and the costs of using one have been driven down considerably over the years, some suggest that there is a risk of a choke point forming &#8211; as there is wherever a function is critical to the Internet&#8217;s operation.</p>
-<h1 id="rfc.section.4.3">
-<a href="#rfc.section.4.3">4.3.</a> <a href="#multi-stakeholder-administration" id="multi-stakeholder-administration">Multi-Stakeholder Administration</a>
-</h1>
-<p id="rfc.section.4.3.p.1">Another technique for mitigating an unavoidable choke point is through formal delegation of its administration to multiple parties with balanced interests, often referred to as the <a href="https://en.wikipedia.org/wiki/Multistakeholder_governance_model">Multi-Stakeholder Model</a>.</p>
-<p id="rfc.section.4.3.p.2">For example, in the case of domain names such oversight is performed by ICANN, a multi-stakeholder organisation.</p>
-<p id="rfc.section.4.3.p.3">Similarly, the specifications that describe the Internet and the Web form another potential choke point, since they mediate how most people use the Internet. For these, standardization is overseen by the World Wide Web consortium and the IETF, both of whom subscribe to <a href="https://open-stand.org/infographic-the-benefits-of-open-standards/">open standards principles</a>.</p>
-<p id="rfc.section.4.3.p.4">Together, these architectural principles and corresponding practices assure that no one person, business or government can control the entire Internet.</p>
-<h1 id="rfc.section.4.4">
-<a href="#rfc.section.4.4">4.4.</a> <a href="#external-regulation" id="external-regulation">External Regulation</a>
-</h1>
-<p id="rfc.section.4.4.p.1">Another possible way to counter the ill effects of a choke point is through legal means, for example regulation.  While it may be appropriate as a solution &#8211; especially when a monopoly forms &#8211; the effect of regulation on the architecture need to be evaluated carefully.</p>
-<p id="rfc.section.4.4.p.2">For example, near-monopolies on &#8220;last-mile&#8221; Internet access in some jurisdictions have led to concerns about <a href="http://www.internetsociety.org/net-neutrality">network neutrality</a>, since they act as a choke point.</p>
-<p id="rfc.section.4.4.p.3">Historically, the Internet has worked best as a network-of-networks, where each has administrative control to make decisions about local connectivity. Imposing external constraints on how networks select their members and who they communicate with could have far-reaching effects, especially since they are often already subject to a variety of local laws and regulations.</p>
-<p id="rfc.section.4.4.p.4">Ensuring that choke points don&#8217;t form is preferable to enshrining them in regulation, since they introduce not only points of control, but also increase the risk of failure in that component, concentrate the risk of security vulnerabilities there, and can ultimately limit the scale of the Internet.</p>
-<p id="rfc.section.4.4.p.5">Therefore, when there is risk of a choke point forming, we look for other mitigations before considering constraints on the behaviour of infrastructure providers. This might take place through encouraging more diversity at the potential choke point, technical measures that counteract its formation, or other means.</p>
-<h1 id="rfc.authors"><a href="#rfc.authors">Authors' Addresses</a></h1>
-<div class="avoidbreak">
-  <address class="vcard">
-	<span class="vcardline">
-	  <span class="fn">Mark Nottingham</span> 
-	  <span class="n hidden">
-		<span class="family-name">Nottingham</span>
-	  </span>
-	</span>
-	<span class="org vcardline"></span>
-	<span class="adr">
-	  
-	  <span class="vcardline">
-		<span class="locality"></span> 
-		<span class="region"></span>
-		<span class="code"></span>
-	  </span>
-	  <span class="country-name vcardline"></span>
-	</span>
-	<span class="vcardline">EMail: <a href="mailto:mnot@mnot.net">mnot@mnot.net</a></span>
-
-<span class="vcardline">URI: <a href="https://www.mnot.net/">https://www.mnot.net/</a></span>
-
-  </address>
-</div><div class="avoidbreak">
-  <address class="vcard">
-	<span class="vcardline">
-	  <span class="fn">Brian Trammell</span> 
-	  <span class="n hidden">
-		<span class="family-name">Trammell</span>
-	  </span>
-	</span>
-	<span class="org vcardline"></span>
-	<span class="adr">
-	  
-	  <span class="vcardline">
-		<span class="locality"></span> 
-		<span class="region"></span>
-		<span class="code"></span>
-	  </span>
-	  <span class="country-name vcardline"></span>
-	</span>
-	<span class="vcardline">EMail: <a href="mailto:ietf@trammell.ch">ietf@trammell.ch</a></span>
-
-  </address>
+<td class="center">Internet Choke Points</td>
+<td class="right">September 2020</td>
+</tr></thead>
+<tfoot><tr>
+<td class="left">Nottingham &amp; Trammell</td>
+<td class="center">Expires 12 March 2021</td>
+<td class="right">[Page]</td>
+</tr></tfoot>
+</table>
+<div id="external-metadata" class="document-information"></div>
+<div id="internal-metadata" class="document-information">
+<dl id="identifiers">
+<dt class="label-workgroup">Workgroup:</dt>
+<dd class="workgroup">IAB</dd>
+<dt class="label-internet-draft">Internet-Draft:</dt>
+<dd class="internet-draft">draft-iab-chokepoints-latest</dd>
+<dt class="label-published">Published:</dt>
+<dd class="published">
+<time datetime="2020-09-08" class="published">8 September 2020</time>
+    </dd>
+<dt class="label-intended-status">Intended Status:</dt>
+<dd class="intended-status">Informational</dd>
+<dt class="label-expires">Expires:</dt>
+<dd class="expires"><time datetime="2021-03-12">12 March 2021</time></dd>
+<dt class="label-authors">Authors:</dt>
+<dd class="authors">
+<div class="author">
+      <div class="author-name">M. Nottingham</div>
 </div>
-
+<div class="author">
+      <div class="author-name">B. Trammell</div>
+</div>
+</dd>
+</dl>
+</div>
+<h1 id="title">Internet Choke Points</h1>
+<section id="section-abstract">
+      <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
+<p id="section-abstract-1">This memo discusses "choke points" in the Internet architecture and the governance structures surrounding them.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-2">A choke point occurs where one single entity or a small number of entities have the ability to make decisions with wide-ranging or global impact some aspect of the use of the Internet.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
+<p id="section-abstract-3">We explore the implications these choke points have on the health of the Internet as a global communications infrastructure, and provide guidance for avoiding the creation of future choke points.<a href="#section-abstract-3" class="pilcrow">¶</a></p>
+</section>
+<div id="status-of-memo">
+<section id="section-boilerplate.1">
+        <h2 id="name-status-of-this-memo">
+<a href="#name-status-of-this-memo" class="section-name selfRef">Status of This Memo</a>
+        </h2>
+<p id="section-boilerplate.1-1">
+        This Internet-Draft is submitted in full conformance with the
+        provisions of BCP 78 and BCP 79.<a href="#section-boilerplate.1-1" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-2">
+        Internet-Drafts are working documents of the Internet Engineering Task
+        Force (IETF). Note that other groups may also distribute working
+        documents as Internet-Drafts. The list of current Internet-Drafts is
+        at <span><a href="https://datatracker.ietf.org/drafts/current/">https://datatracker.ietf.org/drafts/current/</a></span>.<a href="#section-boilerplate.1-2" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-3">
+        Internet-Drafts are draft documents valid for a maximum of six months
+        and may be updated, replaced, or obsoleted by other documents at any
+        time. It is inappropriate to use Internet-Drafts as reference
+        material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-4">
+        This Internet-Draft will expire on 12 March 2021.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="copyright">
+<section id="section-boilerplate.2">
+        <h2 id="name-copyright-notice">
+<a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
+        </h2>
+<p id="section-boilerplate.2-1">
+            Copyright (c) 2020 IETF Trust and the persons identified as the
+            document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.2-2">
+            This document is subject to BCP 78 and the IETF Trust's Legal
+            Provisions Relating to IETF Documents
+            (<span><a href="https://trustee.ietf.org/license-info">https://trustee.ietf.org/license-info</a></span>) in effect on the date of
+            publication of this document. Please review these documents
+            carefully, as they describe your rights and restrictions with
+            respect to this document. Code Components extracted from this
+            document must include Simplified BSD License text as described in
+            Section 4.e of the Trust Legal Provisions and are provided without
+            warranty as described in the Simplified BSD License.<a href="#section-boilerplate.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="toc">
+<section id="section-toc.1">
+        <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents">
+<a href="#name-table-of-contents" class="section-name selfRef">Table of Contents</a>
+        </h2>
+<nav class="toc"><ul class="ulEmpty compact toc">
+<li class="ulEmpty compact toc" id="section-toc.1-1.1">
+            <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="xref">1</a>.  <a href="#name-introduction" class="xref">Introduction</a><a href="#section-toc.1-1.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="ulEmpty compact toc" id="section-toc.1-1.2">
+            <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="xref">2</a>.  <a href="#name-choke-points-on-the-interne" class="xref">Choke Points on the Internet</a><a href="#section-toc.1-1.2.1" class="pilcrow">¶</a></p>
+<ul class="ulEmpty compact toc">
+<li class="ulEmpty compact toc" id="section-toc.1-1.2.2.1">
+                <p id="section-toc.1-1.2.2.1.1" class="keepWithNext"><a href="#section-2.1" class="xref">2.1</a>.  <a href="#name-more-than-resilience" class="xref">More than Resilience</a><a href="#section-toc.1-1.2.2.1.1" class="pilcrow">¶</a></p>
+</li>
+            </ul>
+</li>
+          <li class="ulEmpty compact toc" id="section-toc.1-1.3">
+            <p id="section-toc.1-1.3.1"><a href="#section-3" class="xref">3</a>.  <a href="#name-identifying-potential-choke" class="xref">Identifying Potential Choke Points</a><a href="#section-toc.1-1.3.1" class="pilcrow">¶</a></p>
+<ul class="ulEmpty compact toc">
+<li class="ulEmpty compact toc" id="section-toc.1-1.3.2.1">
+                <p id="section-toc.1-1.3.2.1.1"><a href="#section-3.1" class="xref">3.1</a>.  <a href="#name-access-infrastructure" class="xref">Access Infrastructure</a><a href="#section-toc.1-1.3.2.1.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.3.2.2">
+                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="xref">3.2</a>.  <a href="#name-protocol-bootstrapping" class="xref">Protocol Bootstrapping</a><a href="#section-toc.1-1.3.2.2.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.3.2.3">
+                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="xref">3.3</a>.  <a href="#name-roots-of-trust" class="xref">Roots of Trust</a><a href="#section-toc.1-1.3.2.3.1" class="pilcrow">¶</a></p>
+</li>
+            </ul>
+</li>
+          <li class="ulEmpty compact toc" id="section-toc.1-1.4">
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="xref">4</a>.  <a href="#name-techniques-for-managing-pot" class="xref">Techniques for Managing Potential Choke Points</a><a href="#section-toc.1-1.4.1" class="pilcrow">¶</a></p>
+<ul class="ulEmpty compact toc">
+<li class="ulEmpty compact toc" id="section-toc.1-1.4.2.1">
+                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="xref">4.1</a>.  <a href="#name-avoiding-choke-points" class="xref">Avoiding Choke Points</a><a href="#section-toc.1-1.4.2.1.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.4.2.2">
+                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="xref">4.2</a>.  <a href="#name-balancing-interests" class="xref">Balancing Interests</a><a href="#section-toc.1-1.4.2.2.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.4.2.3">
+                <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="xref">4.3</a>.  <a href="#name-multi-stakeholder-administr" class="xref">Multi-Stakeholder Administration</a><a href="#section-toc.1-1.4.2.3.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.4.2.4">
+                <p id="section-toc.1-1.4.2.4.1"><a href="#section-4.4" class="xref">4.4</a>.  <a href="#name-capture-avoidance" class="xref">Capture Avoidance</a><a href="#section-toc.1-1.4.2.4.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.4.2.5">
+                <p id="section-toc.1-1.4.2.5.1"><a href="#section-4.5" class="xref">4.5</a>.  <a href="#name-external-regulation" class="xref">External Regulation</a><a href="#section-toc.1-1.4.2.5.1" class="pilcrow">¶</a></p>
+</li>
+            </ul>
+</li>
+          <li class="ulEmpty compact toc" id="section-toc.1-1.5">
+            <p id="section-toc.1-1.5.1"><a href="#section-appendix.a" class="xref"></a><a href="#name-authors-addresses" class="xref">Authors' Addresses</a><a href="#section-toc.1-1.5.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+</nav>
+</section>
+</div>
+<div id="introduction">
+<section id="section-1">
+      <h2 id="name-introduction">
+<a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
+      </h2>
+<p id="section-1-1">[EDITOR'S NOTE: bring this up to date. keep the quote below but be a bit more Ripped From Today's Headlines ]<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2">Recent events have caused concern about control of access to the Internet, leading one infrastructure company's CEO to reportedly assert:<a href="#section-1-2" class="pilcrow">¶</a></p>
+<ul class="ulEmpty normal">
+<li class="ulEmpty normal" id="section-1-3.1">Literally, I woke up in a bad mood and decided someone shouldn't be allowed on the Internet. No one should have that power.<a href="#section-1-3.1" class="pilcrow">¶</a>
+</li>
+      </ul>
+<p id="section-1-4">In fact, the Internet is both architected and administered to preclude any one entity from having this power, through the careful management of "choke points" where such power could be exercised.<a href="#section-1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="choke-points-on-the-internet">
+<section id="section-2">
+      <h2 id="name-choke-points-on-the-interne">
+<a href="#section-2" class="section-number selfRef">2. </a><a href="#name-choke-points-on-the-interne" class="section-name selfRef">Choke Points on the Internet</a>
+      </h2>
+<p id="section-2-1">A large influence on the architecture of the Internet was <a href="https://www.rand.org/content/dam/rand/pubs/papers/2008/P1995.pdf">a need to survive nuclear attack</a>, so that loss of no one link or node would preclude communication overall. This desire for resilience is reflected in the modern Internet through measures like the <a href="https://submarine-cable-map-2018.telegeography.com">duplication of submarine internet links</a>.<a href="#section-2-1" class="pilcrow">¶</a></p>
+<p id="section-2-2">Although in some places Internet access is at risk - especially when there is not adequate diversity of access available - the Internet as a whole has proven resilient in the face of such physical disruptions.<a href="#section-2-2" class="pilcrow">¶</a></p>
+<p id="section-2-3">However, its resilience not limited to the physical components of the Internet; it also extends to the various services that Internet access depends upon, and the protocols that it uses. For example, there are <a href="http://root-servers.org/">multiple DNS root servers</a>, operated by a number of parties to provide protection from not only physical disruption, but also political and other disruption caused by such a vital service being controlled by one entity.<a href="#section-2-3" class="pilcrow">¶</a></p>
+<p id="section-2-4">When any one component - through its design or the constraints upon its use - has the ability to deny access to the Internet (accidentally or not) or control its use, we call this a choke point.<a href="#section-2-4" class="pilcrow">¶</a></p>
+<p id="section-2-5">Avoiding choke points is both a design goal for both the protocols and the services that make network access and operations possible, as well as an assumption made by each layer and service about its dependencies. The resilience and long-term health of the Internet depends on this assumption.<a href="#section-2-5" class="pilcrow">¶</a></p>
+<p id="section-2-6">This does not mean that we can prevent all possible choke points; if a node has only one connection to the Internet, that link will be able to deny access no matter what measures we take. Instead, our aim is to avoid unnecessary choke points, especially when they can influence large portions of the Internet.<a href="#section-2-6" class="pilcrow">¶</a></p>
+<div id="more-than-resilience">
+<section id="section-2.1">
+        <h3 id="name-more-than-resilience">
+<a href="#section-2.1" class="section-number selfRef">2.1. </a><a href="#name-more-than-resilience" class="section-name selfRef">More than Resilience</a>
+        </h3>
+<p id="section-2.1-1">As John Gilmore said, "the internet interprets censorship as damage and routes around it." Censorship and other forms of control relies on having an opportunity to exercise that control. Limiting the number of choke points and assuring that any unavoidable points are appropriately administered allows this valuable architectural property to persist.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
+<p id="section-2.1-2">This emergent property of the Internet has proven to be one of its core features. By providing resilient communication, it also provides [EDITOR'S NOTE: missing sentence end]<a href="#section-2.1-2" class="pilcrow">¶</a></p>
+<p id="section-2.1-3">At the same time, the Internet's composition as a network of independent networks is valuable; imposing unnecessary constraints upon them is to be avoided. However, this does not mean that internet infrastructure providers are without guidance; in particular we note that the UN's <a href="http://www.ohchr.org/Documents/Publications/GuidingPrinciplesBusinessHR_EN.pdf">Guiding Principles on Business and Human Rights</a> is an already-existing framework for businesses (including Internet infrastructure providers) to make such decisions within while still respecting human rights - including the right to Internet access.<a href="#section-2.1-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="identifying-potential-choke-points">
+<section id="section-3">
+      <h2 id="name-identifying-potential-choke">
+<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-identifying-potential-choke" class="section-name selfRef">Identifying Potential Choke Points</a>
+      </h2>
+<p id="section-3-1">[EDITOR'S NOTE: IMO (brian) this is more useful if split by why the choke point emerges, not past/future. Not sure the list of subsections below is exhaustive.]<a href="#section-3-1" class="pilcrow">¶</a></p>
+<div id="access-infrastructure">
+<section id="section-3.1">
+        <h3 id="name-access-infrastructure">
+<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-access-infrastructure" class="section-name selfRef">Access Infrastructure</a>
+        </h3>
+<p id="section-3.1-1">Some areas have regulated or de-facto monopolies on network access, whether at the physical, medium, or network layers. Connecting to the Internet in this case requires dealing with one and only one access provider, which forms a natural chokepoint. An actor in control of an access chokepoint can exercise nearly total control over the Internet traffic of those forced to use it.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1-2">Avoiding access chokepoints is a key focus of the network neutrality debate, and regulations in some countries to prevent the formation of access monopolies.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
+<p id="section-3.1-3">[EDITOR'S NOTE: citations would be nice here.]<a href="#section-3.1-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="protocol-bootstrapping">
+<section id="section-3.2">
+        <h3 id="name-protocol-bootstrapping">
+<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-protocol-bootstrapping" class="section-name selfRef">Protocol Bootstrapping</a>
+        </h3>
+<p id="section-3.2-1">[EDITOR'S NOTE: some chokepoints emerge because a protocol is designed to point to some piece of infrastructure to start itself up. Question: does the DoH case fit here?]<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.2-2.1">DNS root servers<a href="#section-3.2-2.1" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-3.2-2.2">others?<a href="#section-3.2-2.2" class="pilcrow">¶</a>
+</li>
+        </ul>
+</section>
+</div>
+<div id="roots-of-trust">
+<section id="section-3.3">
+        <h3 id="name-roots-of-trust">
+<a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-roots-of-trust" class="section-name selfRef">Roots of Trust</a>
+        </h3>
+<p id="section-3.3-1">[EDITOR'S NOTE: everything below needs citations.]<a href="#section-3.3-1" class="pilcrow">¶</a></p>
+<p id="section-3.3-2">A symmertric-key cryptographic protection of the security properties of protocols using requires a method to define and agree upon the roots of trust for the public-key infrastucture (PKI) associated with the protocol. Sometimes, there isa single global root, as in the case with the Root Key Signing Key (KSK) inDNSSEC. Sometimes, roots of trust are regionally distributed, as is the case with the routing public-key infrastructure (RPKI), with one root per Regional Internet Registry (RIR). Still other PKIs have arbitrarily many trust roots: in the case of the Web PKI, each Certificate Authority has its own root, individually trusted on a per-browser or per-platform basis.<a href="#section-3.3-2" class="pilcrow">¶</a></p>
+<p id="section-3.3-3">Each trust root is associated with a governance structure to ensure proper oversight over control of the root. For example, the DNSSEC root is administered according to ICANN's policy process, the RPKI by each RIR's policy process, and the Web PKI by the CA/Browser Forum.<a href="#section-3.3-3" class="pilcrow">¶</a></p>
+<p id="section-3.3-4">Creating a new PKI for a protocol unavoidably creates a new chokepoint for the protocol covered by the PKI, represented by the PKI's root, and requires the creation of a new governance  However, reusing an existing PKI for a new related protocol creates a dependency between policies covering the new protocol and those covering the existing protocol, which may or may not be appropriate.<a href="#section-3.3-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="techniques-for-managing-potential-choke-points">
+<section id="section-4">
+      <h2 id="name-techniques-for-managing-pot">
+<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-techniques-for-managing-pot" class="section-name selfRef">Techniques for Managing Potential Choke Points</a>
+      </h2>
+<p id="section-4-1">There are some cases when there is an unavoidable choke point. For example, as the source of truth regarding naming, administration of domain names is currently a necessary choke point in the Internet architecture.<a href="#section-4-1" class="pilcrow">¶</a></p>
+<div id="avoiding-choke-points">
+<section id="section-4.1">
+        <h3 id="name-avoiding-choke-points">
+<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-avoiding-choke-points" class="section-name selfRef">Avoiding Choke Points</a>
+        </h3>
+<p id="section-4.1-1">A choke point can often be avoided through good protocol design.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4.1-2.1">distributed<a href="#section-4.1-2.1" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-4.1-2.2">avoid discriminators<a href="#section-4.1-2.2" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-4.1-2.3">avoid adding new roles<a href="#section-4.1-2.3" class="pilcrow">¶</a>
+</li>
+        </ul>
+</section>
+</div>
+<div id="balancing-interests">
+<section id="section-4.2">
+        <h3 id="name-balancing-interests">
+<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-balancing-interests" class="section-name selfRef">Balancing Interests</a>
+        </h3>
+<ul class="normal">
+<li class="normal" id="section-4.2-1.1">create balanced markets<a href="#section-4.2-1.1" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-4.2-1.2">standards<a href="#section-4.2-1.2" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-4.2-1.3">federated systems<a href="#section-4.2-1.3" class="pilcrow">¶</a>
+</li>
+        </ul>
+<p id="section-4.2-2">For example, Content Delivery Networks (CDNs) are sometimes viewed as another emerging choke point, because they are seen as essential in mitigating Distributed Denial-of-Service (DDoS) attacks. While there appears to be a healthy market of CDNs (and similar services) and the costs of using one have been driven down considerably over the years, some suggest that there is a risk of a choke point forming - as there is wherever a function is critical to the Internet's operation.<a href="#section-4.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="multi-stakeholder-administration">
+<section id="section-4.3">
+        <h3 id="name-multi-stakeholder-administr">
+<a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-multi-stakeholder-administr" class="section-name selfRef">Multi-Stakeholder Administration</a>
+        </h3>
+<p id="section-4.3-1">Another technique for mitigating an unavoidable choke point is through formal delegation of its administration to multiple parties with balanced interests, often referred to as the <a href="https://en.wikipedia.org/wiki/Multistakeholder_governance_model">Multi-Stakeholder Model</a>.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
+<p id="section-4.3-2">For example, in the case of domain names such oversight is performed by ICANN, a multi-stakeholder organisation.<a href="#section-4.3-2" class="pilcrow">¶</a></p>
+<p id="section-4.3-3">Similarly, the specifications that describe the Internet and the Web form another potential choke point, since they mediate how most people use the Internet. For these, standardization is overseen by the World Wide Web consortium and the IETF, both of whom subscribe to <a href="https://open-stand.org/infographic-the-benefits-of-open-standards/">open standards principles</a>.<a href="#section-4.3-3" class="pilcrow">¶</a></p>
+<p id="section-4.3-4">Together, these architectural principles and corresponding practices assure that no one person, business or government can control the entire Internet.<a href="#section-4.3-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="capture-avoidance">
+<section id="section-4.4">
+        <h3 id="name-capture-avoidance">
+<a href="#section-4.4" class="section-number selfRef">4.4. </a><a href="#name-capture-avoidance" class="section-name selfRef">Capture Avoidance</a>
+        </h3>
+<p id="section-4.4-1">An architectural choke point in the Internet, even if well-protected by a multi-stakeholder governance structure, represents an attractive target to entities that would like to control or disrupt Internet activity. These governance structures should therefore be designed to be resistent to capture by any one entity or set of entities representing a single interest in how the choke point should be administered.<a href="#section-4.4-1" class="pilcrow">¶</a></p>
+<p id="section-4.4-2">Part of this is simply good governance design, ensuring that oversight functions are sufficiently independent from administrative functions in the operation of a choke point that capture of one does not imply capture of the other. This independence also allows for plausible replaceablilty. The threat that a captured execution function, or a captured function at some point in the oversight chain, could simply be replaced, increases the cost of successful capture.<a href="#section-4.4-2" class="pilcrow">¶</a></p>
+<p id="section-4.4-3">Each choke point's capture avoidance strategy is dependent on the nature of the choke point. Depending on the choke point, general elements of such a strategy may include:<a href="#section-4.4-3" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4.4-4.1">the incorporation of legal entities representing each execution and oversight  function in a diversity of legal jurisdictions, to prevent capture by a single  government;<a href="#section-4.4-4.1" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-4.4-4.2">the selection of members of oversight bodies from diverse jurisdictions and affiliations, to prevent those capture by a small number of government(s)  and/or employer(s);<a href="#section-4.4-4.2" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-4.4-4.3">the arrangement of funding stream diversity for oversight and execution  functions, to prevent capture by a small number of funders; and/or<a href="#section-4.4-4.3" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-4.4-4.4">the open publication of any software tooling and/or data necessary to drive an execution function, to the extent possible, in order to increase the  plausibility of replacement.<a href="#section-4.4-4.4" class="pilcrow">¶</a>
+</li>
+        </ul>
+</section>
+</div>
+<div id="external-regulation">
+<section id="section-4.5">
+        <h3 id="name-external-regulation">
+<a href="#section-4.5" class="section-number selfRef">4.5. </a><a href="#name-external-regulation" class="section-name selfRef">External Regulation</a>
+        </h3>
+<p id="section-4.5-1">Another possible way to counter the ill effects of a choke point is through legal means, for example regulation.  While it may be appropriate as a solution - especially when a monopoly forms - the effect of regulation on the architecture need to be evaluated carefully.<a href="#section-4.5-1" class="pilcrow">¶</a></p>
+<p id="section-4.5-2">For example, near-monopolies on "last-mile" Internet access in some jurisdictions have led to concerns about <a href="http://www.internetsociety.org/net-neutrality">network neutrality</a>, since they act as a choke point.<a href="#section-4.5-2" class="pilcrow">¶</a></p>
+<p id="section-4.5-3">Historically, the Internet has worked best as a network-of-networks, where each has administrative control to make decisions about local connectivity. Imposing external constraints on how networks select their members and who they communicate with could have far-reaching effects, especially since they are often already subject to a variety of local laws and regulations.<a href="#section-4.5-3" class="pilcrow">¶</a></p>
+<p id="section-4.5-4">Ensuring that choke points don't form is preferable to enshrining them in regulation, since they introduce not only points of control, but also increase the risk of failure in that component, concentrate the risk of security vulnerabilities there, and can ultimately limit the scale of the Internet.<a href="#section-4.5-4" class="pilcrow">¶</a></p>
+<p id="section-4.5-5">Therefore, when there is risk of a choke point forming, we look for other mitigations before considering constraints on the behaviour of infrastructure providers. This might take place through encouraging more diversity at the potential choke point, technical measures that counteract its formation, or other means.<a href="#section-4.5-5" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="authors-addresses">
+<section id="section-appendix.a">
+      <h2 id="name-authors-addresses">
+<a href="#name-authors-addresses" class="section-name selfRef">Authors' Addresses</a>
+      </h2>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Mark Nottingham</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:mnot@mnot.net" class="email">mnot@mnot.net</a>
+</div>
+<div class="url">
+<span>URI:</span>
+<a href="https://www.mnot.net/" class="url">https://www.mnot.net/</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Brian Trammell</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:ietf@trammell.ch" class="email">ietf@trammell.ch</a>
+</div>
+<div class="url">
+<span>URI:</span>
+<a href="https://trammell.ch" class="url">https://trammell.ch</a>
+</div>
+</address>
+</section>
+</div>
+<script>const toc = document.getElementById("toc");
+toc.querySelector("h2").addEventListener("click", e => {
+  toc.classList.toggle("active");
+});
+toc.querySelector("nav").addEventListener("click", e => {
+  toc.classList.remove("active");
+});
+</script>
 </body>
 </html>
