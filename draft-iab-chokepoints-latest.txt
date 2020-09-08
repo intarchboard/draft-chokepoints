@@ -69,21 +69,21 @@ Table of Contents
    2.  Choke Points on the Internet  . . . . . . . . . . . . . . . .   3
      2.1.  More than Resilience  . . . . . . . . . . . . . . . . . .   3
    3.  Current Internet Choke Points . . . . . . . . . . . . . . . .   4
-     3.1.  Internet Access . . . . . . . . . . . . . . . . . . . . .   4
-     3.2.  Internet Transit  . . . . . . . . . . . . . . . . . . . .   4
-     3.3.  Routing . . . . . . . . . . . . . . . . . . . . . . . . .   4
-     3.4.  Naming  . . . . . . . . . . . . . . . . . . . . . . . . .   4
-     3.5.  Trust . . . . . . . . . . . . . . . . . . . . . . . . . .   4
-     3.6.  Content Delivery  . . . . . . . . . . . . . . . . . . . .   5
-     3.7.  Service Infrastructure  . . . . . . . . . . . . . . . . .   5
-     3.8.  Client Platforms  . . . . . . . . . . . . . . . . . . . .   5
-   4.  Techniques for Managing Potential Choke Points  . . . . . . .   5
-     4.1.  Avoiding Choke Points . . . . . . . . . . . . . . . . . .   5
-     4.2.  Balancing Interests . . . . . . . . . . . . . . . . . . .   5
-     4.3.  Multi-Stakeholder Administration  . . . . . . . . . . . .   6
-     4.4.  Capture Avoidance . . . . . . . . . . . . . . . . . . . .   6
-     4.5.  External Regulation . . . . . . . . . . . . . . . . . . .   7
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   8
+     3.1.  End User Internet Access  . . . . . . . . . . . . . . . .   4
+     3.2.  Internet Transit  . . . . . . . . . . . . . . . . . . . .   5
+     3.3.  Routing . . . . . . . . . . . . . . . . . . . . . . . . .   5
+     3.4.  Naming  . . . . . . . . . . . . . . . . . . . . . . . . .   5
+     3.5.  Trust . . . . . . . . . . . . . . . . . . . . . . . . . .   6
+     3.6.  Content Delivery  . . . . . . . . . . . . . . . . . . . .   7
+     3.7.  Service Infrastructure  . . . . . . . . . . . . . . . . .   7
+     3.8.  Client Platforms  . . . . . . . . . . . . . . . . . . . .   7
+   4.  Techniques for Managing Potential Choke Points  . . . . . . .   7
+     4.1.  Avoiding Choke Points . . . . . . . . . . . . . . . . . .   7
+     4.2.  Balancing Interests . . . . . . . . . . . . . . . . . . .   7
+     4.3.  Multi-Stakeholder Administration  . . . . . . . . . . . .   8
+     4.4.  Capture Avoidance . . . . . . . . . . . . . . . . . . . .   8
+     4.5.  External Regulation . . . . . . . . . . . . . . . . . . .   9
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  10
 
 1.  Introduction
 
@@ -191,24 +191,116 @@ Internet-Draft            Internet Choke Points           September 2020
    choke point emerges, not past/future.  Not sure the list of
    subsections below is exhaustive.]
 
-3.1.  Internet Access
+3.1.  End User Internet Access
 
-   Some areas have regulated or de-facto monopolies on network access,
-   whether at the physical, medium, or network layers.  Connecting to
-   the Internet in this case requires dealing with one and only one
-   access provider, which forms a natural chokepoint.  An actor in
-   control of an access chokepoint can exercise nearly total control
-   over the Internet traffic of those forced to use it.
+   There are now many ways for an end user to connect to the Internet.
+   Mobile access over cellular radio (whether it be 2G, 3G, 4G or the
+   emerging 5G) is extremely common worldwide, and fixed line access is
+   available via multiple technologies - twisted pair, coaxial cable,
+   fibre - in many places.  Some networks also allow Internet access via
+   point-to-point radio.
+
+   Satellite Internet is widely deployed in remote areas, and a number
+   of low earth orbit constellations promise to provide it more
+   universally and at lower latency than previously experienced in this
+   media.
+
+   Despite this diversity of potential choices, obtaining access to the
+   Internet remains a significant choke point.
+
+   In some jurisdictions, legal controls (whether in primary legislation
+   or regulation) limit the diversity of access available, forming a
+   regulated or de facto monopoly on Internet access at the physical,
+   medium, or network layers.
+
+   An actor in control of an access chokepoint can exercise nearly total
+   control over the Internet traffic of end users, and can also use it
+   to gain bargaining power with Internet services that are not directly
+   connected to the access network, because they effectively control
+   some of that service's users.
+
+
+
+Nottingham & Trammell     Expires 12 March 2021                 [Page 4]
+
+Internet-Draft            Internet Choke Points           September 2020
+
 
    Avoiding access chokepoints is a key focus of the network neutrality
-   debate, and regulations in some countries to prevent the formation of
-   access monopolies.
+   debate, and regulations in some countries to prevent or control the
+   formation of access monopolies.
+
+   [Give examples - e.g., US vs AU?]
 
 3.2.  Internet Transit
 
+   The Internet is often defined as a 'network of networks'; the access
+   networks that end users use need to connect to other networks (of
+   various kinds, including other access networks) to provide Internet
+   access.
+
+   backbones, tiers
+
+   Pay for access
+
+   Settlement
+
+   Peering
+
 3.3.  Routing
 
+   Traffic between networks needs to be guided to its destination.  In
+   the Internet, this function is facilitated by routing protocols, most
+   notably BGP.
+
+   BGP works by allowing a network to announce the networks that it can
+   provide access to, so that its peers can choose to route through it
+   if they desire.  As such, it is a decentralised protocol; there is no
+   single 'source of truth' for Internet routing.
+
+   However, while BGP cannot be used to control the entire Internet, it
+   can be used to control some portion of it.  By making false
+   announcements, a network can deny access to or even re-route traffic
+   of other networks illegitimately.
+
+   [Examples]
+
+   BGP security
+
 3.4.  Naming
+
+   Most Internet applications use the Domain Name System (DNS) as a
+   naming service.  This avoids the need for end users to remember
+   numeric IP addresses, and provides a layer of abstraction that
+   services use for load balancing, failover, and other valuable
+   operational tasks.
+
+
+
+Nottingham & Trammell     Expires 12 March 2021                 [Page 5]
+
+Internet-Draft            Internet Choke Points           September 2020
+
+
+   By their nature, domain names have a single source of truth; names
+   are only useful if their ownership and control is universal and
+   consistent - making DNS a common Internet choke point.
+
+   This manifests in a few different ways.
+
+   The source of truth itself - the system of authoritative servers - is
+   a potential and obvious choke point.
+
+   Furthermore, DNS can be used as a control point on the path between
+   users and the root server, in the resolvers that the end user
+   requests transit through (e.g., the stub resolver on the system that
+   they are using, or in recursive resolvers, whether explicitly
+   configured or provided by network configuration).
+
+   Additionally, DNS requests can be blocked or intercepted on the
+   network.
+
+   [examples]
 
 3.5.  Trust
 
@@ -218,14 +310,6 @@ Internet-Draft            Internet Choke Points           September 2020
    the protocol.  Sometimes, there isa single global root, as in the
    case with the Root Key Signing Key (KSK) inDNSSEC.  Sometimes, roots
    of trust are regionally distributed, as is the case with the routing
-
-
-
-Nottingham & Trammell     Expires 12 March 2021                 [Page 4]
-
-Internet-Draft            Internet Choke Points           September 2020
-
-
    public-key infrastructure (RPKI), with one root per Regional Internet
    Registry (RIR).  Still other PKIs have arbitrarily many trust roots:
    in the case of the Web PKI, each Certificate Authority has its own
@@ -243,11 +327,36 @@ Internet-Draft            Internet Choke Points           September 2020
    dependency between policies covering the new protocol and those
    covering the existing protocol, which may or may not be appropriate.
 
+
+
+
+
+
+
+Nottingham & Trammell     Expires 12 March 2021                 [Page 6]
+
+Internet-Draft            Internet Choke Points           September 2020
+
+
 3.6.  Content Delivery
+
+   performance
+
+   resilience
 
 3.7.  Service Infrastructure
 
+   cloud
+
+   third-party services
+
 3.8.  Client Platforms
+
+   standards-defined platforms
+
+   proprietary platforms
+
+   stores and ecosystems
 
 4.  Techniques for Managing Potential Choke Points
 
@@ -274,17 +383,17 @@ Internet-Draft            Internet Choke Points           September 2020
 
    *  federated systems
 
+   For example, Content Delivery Networks (CDNs) are sometimes viewed as
+   another emerging choke point, because they are seen as essential in
+   mitigating Distributed Denial-of-Service (DDoS) attacks.  While there
 
 
 
-Nottingham & Trammell     Expires 12 March 2021                 [Page 5]
+Nottingham & Trammell     Expires 12 March 2021                 [Page 7]
 
 Internet-Draft            Internet Choke Points           September 2020
 
 
-   For example, Content Delivery Networks (CDNs) are sometimes viewed as
-   another emerging choke point, because they are seen as essential in
-   mitigating Distributed Denial-of-Service (DDoS) attacks.  While there
    appears to be a healthy market of CDNs (and similar services) and the
    costs of using one have been driven down considerably over the years,
    some suggest that there is a risk of a choke point forming - as there
@@ -333,7 +442,10 @@ Internet-Draft            Internet Choke Points           September 2020
 
 
 
-Nottingham & Trammell     Expires 12 March 2021                 [Page 6]
+
+
+
+Nottingham & Trammell     Expires 12 March 2021                 [Page 8]
 
 Internet-Draft            Internet Choke Points           September 2020
 
@@ -389,7 +501,7 @@ Internet-Draft            Internet Choke Points           September 2020
 
 
 
-Nottingham & Trammell     Expires 12 March 2021                 [Page 7]
+Nottingham & Trammell     Expires 12 March 2021                 [Page 9]
 
 Internet-Draft            Internet Choke Points           September 2020
 
@@ -445,4 +557,4 @@ Authors' Addresses
 
 
 
-Nottingham & Trammell     Expires 12 March 2021                 [Page 8]
+Nottingham & Trammell     Expires 12 March 2021                [Page 10]
