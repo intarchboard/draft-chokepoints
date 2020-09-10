@@ -1,0 +1,221 @@
+{
+  "magic": "E!vIA5L86J2I",
+  "timestamp": "2020-09-10T00:03:13.068045+00:00",
+  "repo": "intarchboard/chokepoints",
+  "labels": [
+    {
+      "name": "bug",
+      "description": null,
+      "color": "ee0701"
+    },
+    {
+      "name": "duplicate",
+      "description": null,
+      "color": "cccccc"
+    },
+    {
+      "name": "enhancement",
+      "description": null,
+      "color": "84b6eb"
+    },
+    {
+      "name": "help wanted",
+      "description": null,
+      "color": "33aa3f"
+    },
+    {
+      "name": "good first issue",
+      "description": null,
+      "color": "7057ff"
+    },
+    {
+      "name": "invalid",
+      "description": null,
+      "color": "e6e6e6"
+    },
+    {
+      "name": "question",
+      "description": null,
+      "color": "cc317c"
+    },
+    {
+      "name": "wontfix",
+      "description": null,
+      "color": "ffffff"
+    }
+  ],
+  "issues": [
+    {
+      "number": 1,
+      "id": "MDU6SXNzdWUzMDg4MTkxMTI=",
+      "title": "dimensioning the problem",
+      "url": "https://github.com/intarchboard/chokepoints/issues/1",
+      "state": "OPEN",
+      "author": "elear",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Seems to me this problem breaks down in a few dimensions.  One question you might want to ask, for instance, is how to measure market concentration and consolidation.  In this respect, there is a measurement that has been used, known as the Herfindahl-Hirschman Index (HHI).  Daniel Karrenberg did some work on this in the context of telecom and net neutrality about 12 years ago.  It was mostly using IPv4 address allocations to measure the HHI from RIPE's perspective.  What is important about looking at that work is to define the market you wish to measure, both in terms of the product and in terms of any geo-political boundaries.  Daniel's work can be found at: http://meetings.ripe.net/ripe-56/presentations/Karrenberg-Concentration_in_IPv4_Address_Space_Distribution.pdf.\r\n\r\nOnce one has understood the problem, then the next question is what to do about it.  There are both regulatory and non-regulatory approaches.  I won't delve into the regulatory approaches now.  For non-regulatory, generally it is the better mouse trap that provides the answer.  A perfect example of the better mouse trap is when Apple displaced Nokia and others in the cell phone market, when they had sat on their laurels.  This was done through a combination of technological advances in display and battery technology, miniaturization, Moore's law, and user experience.\r\n\r\nThe services you are discussing are well entrenched because of vertical and horizontal integration of a number of capabilities.  However, there remain consumer problems that simply aren't solved.  It will probably be these problems that drive disruption, assuming that the entrenched players do not address them.  No one can give you provably correct examples today, I am afraid, because that will be how money is made in the future.  However. establishing what good looks like is probably a worthy task.  Whether it's the role of the IAB is a fair question, but you guys get to decide that one for yourselves.\r\n\r\nSo having said that, here are some ideas you might want to think about:\r\n\r\n\t\u2022 The role of the service provider in limiting services coming out of residences, mostly due to NAT, but also due to dynamic addressing.\r\n\t\u2022 The ability to distribute software bases to consumers to support distributed models.\r\n\t\u2022 What gets distributed?\r\n\t\u2022 How to open up integration points on consumer platforms, either in cooperation or \"OTT\".\r\n\t\u2022 Impact on consumer cybersecurity.\r\n\t\u2022 Monetization models that consumers and others might value value for these purposes.\r\n\t\u2022 What form of identity is necessary and who owns it and where\r\n\t\u2022 What forms of rendezvous platforms might be useful to support All of This\r\n\t\u2022 How federation/confederation can play a role\r\n",
+      "createdAt": "2018-03-27T04:35:34Z",
+      "updatedAt": "2018-03-27T04:35:34Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 2,
+      "id": "MDU6SXNzdWU0MTY2NDQzNjY=",
+      "title": "Physical access as a chokepoint?",
+      "url": "https://github.com/intarchboard/chokepoints/issues/2",
+      "state": "CLOSED",
+      "author": "huitema",
+      "authorAssociation": "NONE",
+      "assignees": [
+        "britram"
+      ],
+      "labels": [],
+      "body": "In particular, what if all accesses to the Internet have to pass through some licensed carriers, as could well happen with a general move to licensed spectrum ala 5G?",
+      "createdAt": "2019-03-04T06:01:01Z",
+      "updatedAt": "2019-11-02T04:00:35Z",
+      "closedAt": "2019-11-02T04:00:35Z",
+      "comments": [
+        {
+          "author": "britram",
+          "authorAssociation": "COLLABORATOR",
+          "body": "added to the document in #3, still needs text...",
+          "createdAt": "2019-06-10T14:56:22Z",
+          "updatedAt": "2019-06-10T14:56:22Z"
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "id": "MDU6SXNzdWU2ODc4MTYzMDc=",
+      "title": "Platforms, chokepoints and the law",
+      "url": "https://github.com/intarchboard/chokepoints/issues/7",
+      "state": "OPEN",
+      "author": "mnot",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "https://www.hoover.org/sites/default/files/research/docs/who-do-you-sue-state-and-platform-hybrid-power-over-online-speech_0.pdf has some possibly relevant texts; e.g.,\r\n\r\n> Another important theme of the communications cases is the \u201cscarcity rationale,\u201d the principle that regulation, and the resulting burden on owners\u2019 First Amendment rights, may be justified to ensure fair access to physically finite, exhaustible communications channels. The Court developed this doctrine in upholding fairness requirements for broadcast spectrum and later applied similar reasoning to cable. Some degree of government interference with the companies\u2019 rights was justified, the Court said, to keep them from restricting, \u201cthrough physical control of a critical pathway of communication, the free flow of information and ideas.\u201d\r\n> Platforms like Twitter or YouTube do not exercise the kind of physical bottleneck control over communications that supported the Court\u2019s rulings against cable companies. In this sense, user-facing platforms are also different from present-day internet access providers like ISPs, whose First Amendment challenge to net-neutrality rules was rejected by the US Court of Appeals, DC Circuit, in 2016.98 Speakers banned from a site like YouTube can still speak on Reddit or Twitter; users kicked off of those platforms may find a home on Gab or 4chan. They can also put content online using their own servers.\r\n> Many critics argue, though, that the platform ecosystem has created new forms of scarcity. Even if users can still speak on less-popular platforms, they argue, those may be inadequate because not enough other people are there to listen or respond.99 Following this argument, the economic success of a handful of platforms, and the resulting concentration of users\u2014 perhaps aided by network effects or natural monopoly dynamics\u2014effectively creates new bottlenecks and scarcity of communications channels.\r\n\r\n(p 18)\r\n\r\n",
+      "createdAt": "2020-08-28T06:39:07Z",
+      "updatedAt": "2020-08-28T06:39:07Z",
+      "closedAt": null,
+      "comments": []
+    }
+  ],
+  "pulls": [
+    {
+      "number": 3,
+      "id": "MDExOlB1bGxSZXF1ZXN0Mjg2NzExMjIz",
+      "title": "add abstract and ednotes for future work",
+      "url": "https://github.com/intarchboard/chokepoints/pull/3",
+      "state": "MERGED",
+      "author": "britram",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2019-06-10T14:55:49Z",
+      "updatedAt": "2019-06-11T04:39:37Z",
+      "baseRepository": "intarchboard/chokepoints",
+      "baseRefName": "master",
+      "baseRefOid": "24ef1448a37d753e9a4610b079cc3bc2b2b5063c",
+      "headRepository": "intarchboard/chokepoints",
+      "headRefName": "britram-abstract",
+      "headRefOid": "cdec87fefb2bb494a86e5a40b55d00705059e36d",
+      "closedAt": "2019-06-11T04:39:32Z",
+      "mergedAt": "2019-06-11T04:39:32Z",
+      "mergedBy": "mnot",
+      "mergeCommit": {
+        "oid": "f8cc84f19b9bb28635980b6124790f64ca399e0e"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 4,
+      "id": "MDExOlB1bGxSZXF1ZXN0MzAwNDYyMDg0",
+      "title": "some words on access infra",
+      "url": "https://github.com/intarchboard/chokepoints/pull/4",
+      "state": "MERGED",
+      "author": "britram",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "fixes #2 ",
+      "createdAt": "2019-07-23T20:37:16Z",
+      "updatedAt": "2019-11-02T04:00:39Z",
+      "baseRepository": "intarchboard/chokepoints",
+      "baseRefName": "master",
+      "baseRefOid": "f8cc84f19b9bb28635980b6124790f64ca399e0e",
+      "headRepository": "intarchboard/chokepoints",
+      "headRefName": "britram-phys",
+      "headRefOid": "1d9ec12d251fa3923977e7a1edf174c7125ef139",
+      "closedAt": "2019-11-02T04:00:36Z",
+      "mergedAt": "2019-11-02T04:00:35Z",
+      "mergedBy": "mnot",
+      "mergeCommit": {
+        "oid": "c486de2ca30627f744400b5fd6d47af813ad65f9"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 5,
+      "id": "MDExOlB1bGxSZXF1ZXN0MzAxNzc5MjMy",
+      "title": "initial text on capture avoidance",
+      "url": "https://github.com/intarchboard/chokepoints/pull/5",
+      "state": "MERGED",
+      "author": "britram",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2019-07-27T19:09:59Z",
+      "updatedAt": "2019-11-02T04:00:59Z",
+      "baseRepository": "intarchboard/chokepoints",
+      "baseRefName": "master",
+      "baseRefOid": "f8cc84f19b9bb28635980b6124790f64ca399e0e",
+      "headRepository": "intarchboard/chokepoints",
+      "headRefName": "britram-bigredbutton",
+      "headRefOid": "e36add24248f3d9b4d2304e7a6c1dacb3d70c13f",
+      "closedAt": "2019-11-02T04:00:56Z",
+      "mergedAt": "2019-11-02T04:00:56Z",
+      "mergedBy": "mnot",
+      "mergeCommit": {
+        "oid": "fc2790633efa049ff33673b736f55fc80ddebafc"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 6,
+      "id": "MDExOlB1bGxSZXF1ZXN0MzAxNzc5MjQ0",
+      "title": "Add [citation needed] section on PKI roots",
+      "url": "https://github.com/intarchboard/chokepoints/pull/6",
+      "state": "MERGED",
+      "author": "britram",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2019-07-27T19:10:10Z",
+      "updatedAt": "2019-11-02T04:01:27Z",
+      "baseRepository": "intarchboard/chokepoints",
+      "baseRefName": "master",
+      "baseRefOid": "f8cc84f19b9bb28635980b6124790f64ca399e0e",
+      "headRepository": "intarchboard/chokepoints",
+      "headRefName": "britram-pkiroot",
+      "headRefOid": "857f4445baabe3f85c8f3914cbdb154d448f54e3",
+      "closedAt": "2019-11-02T04:01:24Z",
+      "mergedAt": "2019-11-02T04:01:24Z",
+      "mergedBy": "mnot",
+      "mergeCommit": {
+        "oid": "d3961458ee948876aa0ec2a4cecfc84e38eb6712"
+      },
+      "comments": [],
+      "reviews": []
+    }
+  ]
+}
